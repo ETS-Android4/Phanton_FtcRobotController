@@ -90,9 +90,9 @@ public class A_Sin_Kub_2 extends Methods {
             telemetry.addData("Height", rows);
             telemetry.addData("Width", cols);
             telemetry.update();
+            sleep(100);
             if (valLeft == 255) {
-                sleep(100);
-                vpered(500, 0.2);
+                vpered(400, 0.2);
                 vpravo(750, 0.3);
                 vikidisch_niz(1);
                 vlevo(1000, 0.3);
@@ -117,7 +117,7 @@ public class A_Sin_Kub_2 extends Methods {
                 stop_all();
                 sleep(30000);
             } else if (valRight == 255) {
-                vpered(500, 0.2);
+                vpered(400, 0.2);
                 vpravo(745, 0.3);
                 vikidisch_mid(1);
                 vlevo(1000, 0.3);
@@ -142,9 +142,9 @@ public class A_Sin_Kub_2 extends Methods {
                 stop_all();
                 sleep(30000);
             } else {
-                vpered(500, 0.2);
-                vpravo(800, 0.3);
-                vikidisch_verx(0.95);
+                vpered(400, 0.2);
+                vpravo(850, 0.3);
+                vikidisch_verx(0.92);
                 vlevo(1000, 0.3);
                 nazad(1050, 0.4);
                 nazad(500, 0.2);
@@ -156,11 +156,11 @@ public class A_Sin_Kub_2 extends Methods {
                 sleep(1000);
                 sos.setPower(0);
                 sleep(1);
-                vpered(1560, 0.4);
+                vpered(1660, 0.4);
                 vpravo(780, 0.3);
                 vikidisch_mid(1);
                 vlevo(1000, 0.4);
-                nazad(1450, 0.4);
+                nazad(1550, 0.4);
                 //vpravo(500, 0.4);
                 kub_down(1950);
                 pod.setPower(0);

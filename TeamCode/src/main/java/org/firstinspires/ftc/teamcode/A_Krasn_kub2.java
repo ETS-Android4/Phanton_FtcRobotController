@@ -90,6 +90,7 @@ public class A_Krasn_kub2 extends Methods {
             telemetry.addData("Height", rows);
             telemetry.addData("Width", cols);
             telemetry.update();
+            sleep(100);
             if (valLeft == 255) {
                 sleep(100);
                 vpered(500, 0.2);

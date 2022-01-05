@@ -66,7 +66,7 @@ public class Methods extends LinearOpMode {
     }
     public void kub_mid () {
         pod.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        pod.setTargetPosition(1950); //2100 verx
+        pod.setTargetPosition(2250); //2100 verx
         pod.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         pod.setPower(1);
         while ((opModeIsActive() && (pod.isBusy()))){
@@ -109,7 +109,7 @@ public class Methods extends LinearOpMode {
         sleep(100);
         vikidisch.setPower(napr);
         sleep(2000);
-        vikidisch.setPower(0);
+        vikidisch.setPower(0.05);
         sleep(500);
     }
     public void vikidisch_mid(double napr){
@@ -118,7 +118,7 @@ public class Methods extends LinearOpMode {
         sleep(100);
         vikidisch.setPower(napr); //-1
         sleep(2000);
-        vikidisch.setPower(0);
+        vikidisch.setPower(0.05);
         sleep(500);
     }
     public void vikidisch_niz(double napr){
@@ -127,7 +127,7 @@ public class Methods extends LinearOpMode {
         sleep(100);
         vikidisch.setPower(napr); //-1
         sleep(2000);
-        vikidisch.setPower(0);
+        vikidisch.setPower(0.05);
         sleep(500);
     }
 

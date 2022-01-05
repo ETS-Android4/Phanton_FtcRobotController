@@ -112,13 +112,13 @@ public class a_Gamepad__krasn extends OpMode {
         if (gamepad2.b) {
             vikidisch.setPower(-1);
         }else if (gamepad2.y){
-            vikidisch.setPower(-0.95);
+            vikidisch.setPower(-0.87);
         } else if (gamepad2.a){
             vikidisch.setPower(1);
         }else if (gamepad2.x){
-            vikidisch.setPower(0.95);
+            vikidisch.setPower(0.92);
         }else {
-            vikidisch.setPower(0);
+            vikidisch.setPower(0.05);
         }
         if (pwrTrigger5 != 0){
             krut.setPower(1 * pwrTrigger5);

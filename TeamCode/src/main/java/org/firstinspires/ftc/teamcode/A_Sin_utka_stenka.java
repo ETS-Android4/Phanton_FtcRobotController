@@ -92,7 +92,7 @@ public class A_Sin_utka_stenka extends Methods {
             telemetry.addData("Height", rows);
             telemetry.addData("Width", cols);
             telemetry.update();
-            sleep(1);
+            sleep(100);
             if (valLeft == 255) {
                 nazad(550, 0.2);
                 nazad(110, 0.15);
@@ -100,7 +100,7 @@ public class A_Sin_utka_stenka extends Methods {
                 sleep(4500);
                 krut.setPower(0);
                 sleep(1); //T
-                vpered(1150, 0.4);//TODO:
+                vpered(1250, 0.4);//TODO:
                 vlevo(770, 0.25); //-850
                 vikidisch_niz(-1);
                 vpravo(400, 0.4);
@@ -118,7 +118,7 @@ public class A_Sin_utka_stenka extends Methods {
                 sleep(4500);
                 krut.setPower(0);
                 sleep(1); //T
-                vpered(1150, 0.4);//TODO:
+                vpered(1250, 0.4);//TODO:
                 vlevo(790, 0.25); //-850
                 vikidisch_mid(-1);
                 vpravo(400, 0.4);
@@ -136,9 +136,9 @@ public class A_Sin_utka_stenka extends Methods {
                 sleep(4500);
                 krut.setPower(0);
                 sleep(1); //T
-                vpered(1050, 0.4);//TODO:
+                vpered(1150, 0.4);//TODO:
                 vlevo(890, 0.25); //-850
-                vikidisch_verx(-0.95);
+                vikidisch_verx(-0.87);
                 vpravo(400, 0.3);
                 razvarot(1100, 0.3);
                 vlevo(500, 0.3);
