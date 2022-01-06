@@ -147,7 +147,7 @@ public class A_Krasn_kub2 extends Methods {
             } else {
                 vpered(500, 0.2);
                 vlevo(860, 0.3);
-                vikidisch_verx(-0.95);
+                vikidisch_verx(-0.87);
                 vpravo(1000, 0.3);
                 nazad(1050, 0.4);
                 nazad(500, 0.2);

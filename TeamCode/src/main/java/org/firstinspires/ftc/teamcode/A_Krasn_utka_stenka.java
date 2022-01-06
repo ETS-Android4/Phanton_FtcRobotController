@@ -152,7 +152,7 @@ public class A_Krasn_utka_stenka extends Methods {
                 sleep(1); //T
                 vpered(1050, 0.4);//TODO:
                 vpravo(880, 0.25); //-850
-                vikidisch_verx(0.95);
+                vikidisch_verx(0.92);
                 vlevo(400, 0.3);
                 razvarot(1100, 0.3);
                 vpravo(500, 0.3);
