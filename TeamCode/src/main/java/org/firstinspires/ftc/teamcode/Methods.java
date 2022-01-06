@@ -108,7 +108,7 @@ public class Methods extends LinearOpMode {
         stop_all();
         sleep(100);
         vikidisch.setPower(napr);
-        sleep(2000);
+        sleep(2500);
         vikidisch.setPower(0.05);
         sleep(500);
     }
