@@ -67,7 +67,7 @@ public class A_Sin_Kub_2 extends Methods {
         int cameraMonitorViewId = hardwareMap.appContext.getResources().getIdentifier("cameraMonitorViewId", "id", hardwareMap.appContext.getPackageName());
         phoneCam = OpenCvCameraFactory.getInstance().createWebcam(hardwareMap.get(WebcamName.class, "Webcam 1"), cameraMonitorViewId);
         phoneCam.openCameraDevice();
-        phoneCam.setPipeline(new A_Sin_Kub_2.StageSwitchingPipeline());//different stages
+        phoneCam.setPipeline(new StageSwitchingPipeline());//different stages
         phoneCam.startStreaming(rows, cols, OpenCvCameraRotation.UPRIGHT);//display on RC*/
         //width, height
         //width = height in this case, because camera is in portrait mode.
@@ -76,7 +76,6 @@ public class A_Sin_Kub_2 extends Methods {
         rightF = hardwareMap.dcMotor.get("rf");
         rightB = hardwareMap.dcMotor.get("rr");
         krut = hardwareMap.dcMotor.get("kr");
-        vobla = hardwareMap.dcMotor.get("vl");
         zaxvat = hardwareMap.crservo.get("zx");
         vikidisch = hardwareMap.crservo.get("vs");
         pod = hardwareMap.dcMotor.get("pod");
@@ -181,8 +180,8 @@ public class A_Sin_Kub_2 extends Methods {
             RAW_IMAGE,//displays raw view
         }
 
-        private A_Krasn_kub2.StageSwitchingPipeline.Stage stageToRenderToViewport = A_Krasn_kub2.StageSwitchingPipeline.Stage.detection;
-        private A_Krasn_kub2.StageSwitchingPipeline.Stage[] stages = A_Krasn_kub2.StageSwitchingPipeline.Stage.values();
+        private StageSwitchingPipeline.Stage stageToRenderToViewport = StageSwitchingPipeline.Stage.detection;
+        private StageSwitchingPipeline.Stage[] stages = StageSwitchingPipeline.Stage.values();
 
         @Override
         public void onViewportTapped() {

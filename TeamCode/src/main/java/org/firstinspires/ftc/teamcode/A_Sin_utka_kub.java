@@ -78,7 +78,6 @@ public class A_Sin_utka_kub extends Methods {
         rightF = hardwareMap.dcMotor.get("rf");
         rightB = hardwareMap.dcMotor.get("rr");
         krut = hardwareMap.dcMotor.get("kr");
-        vobla = hardwareMap.dcMotor.get("vl");
         zaxvat = hardwareMap.crservo.get("zx");
         vikidisch = hardwareMap.crservo.get("vs");
         pod = hardwareMap.dcMotor.get("pod");
@@ -94,68 +93,72 @@ public class A_Sin_utka_kub extends Methods {
             telemetry.update();
             sleep(100);
             if (valLeft == 255){
-                vpered(400, 0.4);
-            vpravo(740, 0.25);
-            vikidisch_niz(1);
-            vpravo(-500, 0.4);
-            razvarot(-1000, 0.25);
-            vpravo(1000, 0.4);
-            vpered(550, 0.3);
-            krut.setPower(-1);
-            sleep(2000);
-            krut.setPower(0);
-            sleep(1);
-            vpered(340, 0.4);//TODO:
-            vpravo(-400, 0.25);
-            vpravo(100, 0.2);
-            vikidisch.setPower(1);
-            sleep(500);
-            kub_down(-1750);
-            pod.setPower(0);
-            stop_all();
-            sleep(30000);}
+                vpered(700, 0.4);
+                vpravo(770, 0.25);
+                vikidisch_niz(-1);
+                vlevo(800, 0.4);
+                vpravo(100, 0.4);
+                nazad(1300, 0.3);
+                krut.setPower(-0.7);
+                sleep(1200);
+                nazad(35, 0.2);
+                sleep(1200);
+                nazad(35, 0.2);
+                sleep(1500);
+                krut.setPower(0);
+                sleep(1);
+                vpered(100, 0.4);
+                vpravo(400, 0.25);
+                nazad(300, 0.2);
+                kub_down(1200);
+                pod.setPower(0);
+                sleep(30000);
+                stop_all();
+            }
             else if (valRight == 255){
-                vpered(-950, 0.4);
-                vpravo(130, 0.25);
-                vikidisch_niz(1);
-                vpravo(-500, 0.4);
-                razvarot(-1000, 0.25);
-                vpravo(1000, 0.4);
-                vpered(550, 0.3);
-                krut.setPower(-1);
-                sleep(2000);
+                vpered(700, 0.4);
+                vpravo(790, 0.25);
+                vikidisch_mid(-1);
+                vlevo(800, 0.4);
+                vpravo(100, 0.4);
+                nazad(1300, 0.3);
+                krut.setPower(-0.7);
+                sleep(1200);
+                nazad(35, 0.2);
+                sleep(1200);
+                nazad(35, 0.2);
+                sleep(1500);
                 krut.setPower(0);
                 sleep(1);
-                vpered(340, 0.4);//TODO:
-                vpravo(-400, 0.25);
-                vpravo(100, 0.2);
-                vikidisch.setPower(1);
-                sleep(500);
-                kub_down(-1900);
+                vpered(100, 0.4);
+                vpravo(400, 0.25);
+                nazad(300, 0.2);
+                kub_down(2300);
                 pod.setPower(0);
-                stop_all();
                 sleep(30000);
+                stop_all();
             } else {
-                vpered(-900, 0.4);
-                vpravo(100, 0.25);
-                vikidisch_niz(1);
-                vpravo(-500, 0.4);
-                razvarot(-1000, 0.25);
-                vpravo(1000, 0.4);
-                vpered(550, 0.3);
-                krut.setPower(-1);
-                sleep(2000);
+                vpered(700, 0.4);
+                vpravo(810, 0.25);
+                vikidisch_verx(-1);
+                vlevo(800, 0.4);
+                vpravo(100, 0.4);
+                nazad(1300, 0.3);
+                krut.setPower(-0.7);
+                sleep(1200);
+                nazad(35, 0.2);
+                sleep(1200);
+                nazad(35, 0.2);
+                sleep(1500);
                 krut.setPower(0);
                 sleep(1);
-                vpered(340, 0.4);//TODO:
-                vpravo(-400, 0.25);
-                vpravo(100, 0.2);
-                vikidisch.setPower(1);
-                sleep(500);
-                kub_down(-2000);
+                vpered(100, 0.4);
+                vpravo(400, 0.25);
+                nazad(300, 0.2);
+                kub_down(3000);
                 pod.setPower(0);
-                stop_all();
                 sleep(30000);
+                stop_all();
             }
             /*if(valLeft == 255){
                 //Траектория 1

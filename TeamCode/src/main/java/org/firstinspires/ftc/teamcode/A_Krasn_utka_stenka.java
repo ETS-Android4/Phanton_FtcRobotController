@@ -77,7 +77,6 @@ public class A_Krasn_utka_stenka extends Methods {
         rightF = hardwareMap.dcMotor.get("rf");
         rightB = hardwareMap.dcMotor.get("rr");
         krut = hardwareMap.dcMotor.get("kr");
-        vobla = hardwareMap.dcMotor.get("vl");
         zaxvat = hardwareMap.crservo.get("zx");
         vikidisch = hardwareMap.crservo.get("vs");
         pod = hardwareMap.dcMotor.get("pod");
@@ -177,8 +176,8 @@ public class A_Krasn_utka_stenka extends Methods {
             RAW_IMAGE,//displays raw view
         }
 
-        private A_Krasn_kub2.StageSwitchingPipeline.Stage stageToRenderToViewport = A_Krasn_kub2.StageSwitchingPipeline.Stage.detection;
-        private A_Krasn_kub2.StageSwitchingPipeline.Stage[] stages = A_Krasn_kub2.StageSwitchingPipeline.Stage.values();
+        private StageSwitchingPipeline.Stage stageToRenderToViewport = StageSwitchingPipeline.Stage.detection;
+        private StageSwitchingPipeline.Stage[] stages = StageSwitchingPipeline.Stage.values();
 
         @Override
         public void onViewportTapped() {

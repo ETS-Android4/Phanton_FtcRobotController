@@ -19,8 +19,8 @@ import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
 //TODO: ПРОЛЕТАРИЙ, ПЕРЕД ТЕМЬ, КАК МЕНЯТЬ ЧТО-ТО В ГАМАПЕДЕ, ПРОВЕРЬ СНАЧАЛА МАТЬ АГАПА!!!
 @TeleOp(name = "Gamepad_k", group = "TeleOP")
 public class a_Gamepad__krasn extends OpMode {
-    DcMotor leftF, rightF, leftB, rightB, krut, vobla, pod, sos;
-    CRServo zaxvat, vikidisch;
+    DcMotor leftF, rightF, leftB, rightB, krut, pod, sos, pisun;
+    CRServo zaxvat, vikidisch, pis;
     private ElapsedTime runtime = new ElapsedTime(ElapsedTime.Resolution.MILLISECONDS);
 
 
@@ -30,8 +30,9 @@ public class a_Gamepad__krasn extends OpMode {
         leftB = hardwareMap.dcMotor.get("lr");
         rightF = hardwareMap.dcMotor.get("rf");
         rightB = hardwareMap.dcMotor.get("rr");
+        pisun = hardwareMap.dcMotor.get("pis");
+        pis = hardwareMap.crservo.get("ps");
         krut = hardwareMap.dcMotor.get("kr");
-        vobla = hardwareMap.dcMotor.get("vl");
         zaxvat = hardwareMap.crservo.get("zx");
         vikidisch = hardwareMap.crservo.get("vs");
         pod = hardwareMap.dcMotor.get("pod");
@@ -54,6 +55,8 @@ public class a_Gamepad__krasn extends OpMode {
         float Stick2Y = (float) (gamepad1.left_stick_y * 0.3);
         //korob.setTargetPosition(720);
         double power = -1;
+        double ticks = 0;
+        double x = 0;
         // занято 1 геймпад: стики , триггеры , бампера
         // занято 2 геймпад: крестовина вверх и вниз, бампера, буквы, триггеры
 
@@ -93,6 +96,23 @@ public class a_Gamepad__krasn extends OpMode {
             rightF.setPower(0);
             leftB.setPower(0);
 
+        }
+        if (gamepad1.dpad_up){
+            pisun.setPower(-0.8);
+        } else if (gamepad1.dpad_down){
+            pisun.setPower(0.8);
+        } else {
+            pisun.setPower(0);
+        }
+        if (gamepad1.a){
+            x = pis.getPower() - 0.0005;
+            pis.setPower(x);
+        } else if (gamepad1.y) {
+            x = pis.getPower() + 0.0005;
+            pis.setPower(x);
+        } else{
+            x = pis.getPower();
+            pis.setPower(x);
         }
         if (gamepad2.dpad_down){
             pod.setPower(-1);

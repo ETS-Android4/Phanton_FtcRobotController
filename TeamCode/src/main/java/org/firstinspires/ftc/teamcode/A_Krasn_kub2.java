@@ -76,7 +76,6 @@ public class A_Krasn_kub2 extends Methods {
         rightF = hardwareMap.dcMotor.get("rf");
         rightB = hardwareMap.dcMotor.get("rr");
         krut = hardwareMap.dcMotor.get("kr");
-        vobla = hardwareMap.dcMotor.get("vl");
         zaxvat = hardwareMap.crservo.get("zx");
         vikidisch = hardwareMap.crservo.get("vs");
         pod = hardwareMap.dcMotor.get("pod");
@@ -94,7 +93,7 @@ public class A_Krasn_kub2 extends Methods {
             if (valLeft == 255) {
                 sleep(100);
                 vpered(500, 0.2);
-                vlevo(715, 0.3);
+                vlevo(705, 0.3);
                 vikidisch_niz(-1);
                 vpravo(1000, 0.3);
                 nazad(1050, 0.4);
@@ -108,7 +107,7 @@ public class A_Krasn_kub2 extends Methods {
                 sos.setPower(0);
                 sleep(1);
                 vpered(1570, 0.4);
-                vlevo(790, 0.3);
+                vlevo(820, 0.3);
                 vikidisch_mid(-1);
                 vpravo(1000, 0.4);
                 vlevo(50, 0.2);
@@ -120,27 +119,27 @@ public class A_Krasn_kub2 extends Methods {
                 sleep(30000);
             } else if (valRight == 255) {
                 vpered(510, 0.2);
-                vlevo(715, 0.3);
+                vlevo(750, 0.3);
                 vikidisch_mid(-1);
                 vpravo(1000, 0.3);
                 nazad(1050, 0.4);
                 nazad(500, 0.2);
-                kub_down(2250);
+                kub_down(2350);
                 sos.setPower(-1);
-                nazad(50, 0.2);
+                nazad(100, 0.2);
                 sleep(1500);
                 sos.setPower(1);
                 sleep(1000);
                 sos.setPower(0);
                 sleep(1);
-                vpered(1570, 0.4);
-                vlevo(790, 0.3);
+                vpered(1590, 0.4);
+                vlevo(780, 0.3);
                 vikidisch_mid(-1);
                 vpravo(1000, 0.4);
                 vlevo(50, 0.2);
-                nazad(1200, 0.4);
+                nazad(1100, 0.4);
                 //vpravo(-500, 0.4);
-                kub_down(2200);
+                kub_down(2300);
                 pod.setPower(0);
                 stop_all();
                 sleep(30000);

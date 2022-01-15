@@ -66,7 +66,7 @@ public class Methods extends LinearOpMode {
     }
     public void kub_mid () {
         pod.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        pod.setTargetPosition(2250); //2100 verx
+        pod.setTargetPosition(2350); //2100 verx
         pod.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         pod.setPower(1);
         while ((opModeIsActive() && (pod.isBusy()))){
