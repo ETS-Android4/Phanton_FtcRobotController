@@ -71,7 +71,7 @@ public class A_Sin_utka_depo extends Methods {
         int cameraMonitorViewId = hardwareMap.appContext.getResources().getIdentifier("cameraMonitorViewId", "id", hardwareMap.appContext.getPackageName());
         phoneCam = OpenCvCameraFactory.getInstance().createWebcam(hardwareMap.get(WebcamName.class, "Webcam 1"), cameraMonitorViewId);
         phoneCam.openCameraDevice();
-        phoneCam.setPipeline(new A_Sin_utka_stenka.StageSwitchingPipeline());//different stages
+        phoneCam.setPipeline(new StageSwitchingPipeline());//different stages
         phoneCam.startStreaming(rows, cols, OpenCvCameraRotation.UPRIGHT);//display on RC*/
         //width = height in this case, because camera is in portrait mode.
         leftF = hardwareMap.dcMotor.get("lf");
@@ -171,7 +171,7 @@ public class A_Sin_utka_depo extends Methods {
                 krut.setPower(0);
                 sleep(1);
                 vpered(100, 0.4);
-                vlevo(800, 0.25);
+                vlevo(600, 0.25);
                 nazad(450, 0.2);
                 Pis_out(3000);
                 pisun.setPower(0);
@@ -185,7 +185,118 @@ public class A_Sin_utka_depo extends Methods {
                 pod.setPower(0);
                 sleep(30000);
                 stop_all();
+            } } }
+            static class StageSwitchingPipeline extends OpenCvPipeline {
+        Mat yCbCrChan2Mat = new Mat();
+        Mat thresholdMat = new Mat();
+        Mat all = new Mat();
+        List<MatOfPoint> contoursList = new ArrayList<>();
+
+        enum Stage {//color difference. greyscale
+            detection,//includes outlines
+            THRESHOLD,//b&w
+            RAW_IMAGE,//displays raw view
+        }
+
+        private StageSwitchingPipeline.Stage stageToRenderToViewport = StageSwitchingPipeline.Stage.detection;
+        private StageSwitchingPipeline.Stage[] stages = StageSwitchingPipeline.Stage.values();
+
+        @Override
+        public void onViewportTapped() {
+            /*
+             * Note that this method is invoked from the UI thread
+             * so whatever we do here, we must do quickly.
+             */
+
+            int currentStageNum = stageToRenderToViewport.ordinal();
+
+            int nextStageNum = currentStageNum + 1;
+
+            if (nextStageNum >= stages.length) {
+                nextStageNum = 0;
             }
+
+            stageToRenderToViewport = stages[nextStageNum];
+        }
+
+        @Override
+            public Mat processFrame(Mat input) {
+                contoursList.clear();
+                /*
+                 * This pipeline finds the contours of yellow blobs such as the Gold Mineral
+                 * from the Rover Ruckus game.
+                 */
+
+                //color diff cb.
+                //lower cb = more blue = skystone = white
+                //higher cb = less blue = yellow stone = grey
+                Imgproc.cvtColor(input, yCbCrChan2Mat, Imgproc.COLOR_RGB2YCrCb);//converts rgb to ycrcb
+                Core.extractChannel(yCbCrChan2Mat, yCbCrChan2Mat, 2);//takes cb difference and stores
+
+                //b&w
+                Imgproc.threshold(yCbCrChan2Mat, thresholdMat, 112, 255, Imgproc.THRESH_BINARY_INV);
+
+                //outline/contour
+                Imgproc.findContours(thresholdMat, contoursList, new Mat(), Imgproc.RETR_LIST, Imgproc.CHAIN_APPROX_SIMPLE);
+                yCbCrChan2Mat.copyTo(all);//copies mat object
+                //Imgproc.drawContours(all, contoursList, -1, new Scalar(255, 0, 0), 3, 8);//draws blue contours
+
+
+                //get values from frame
+
+
+                double[] pixLeft = thresholdMat.get((int) (input.rows() * leftPos[1]), (int) (input.cols() * leftPos[0]));//gets value at circle
+                valLeft = (int) pixLeft[0];
+
+                double[] pixRight = thresholdMat.get((int) (input.rows() * rightPos[1]), (int) (input.cols() * rightPos[0]));//gets value at circle
+                valRight = (int) pixRight[0];
+
+                //create three points
+                Point pointLeft = new Point((int) (input.cols() * leftPos[0]), (int) (input.rows() * leftPos[1]));
+                Point pointRight = new Point((int) (input.cols() * rightPos[0]), (int) (input.rows() * rightPos[1]));
+
+                //draw circles on those points
+                Imgproc.circle(all, pointLeft, 5, new Scalar(255, 0, 0), 1);//draws circle
+                Imgproc.circle(all, pointRight, 5, new Scalar(255, 0, 0), 1);//draws circle
+
+                //draw 3 rectangles
+                Imgproc.rectangle(//1-3
+                        all,
+                        new Point(
+                                input.cols() * (leftPos[0] - rectWidth1 / 2),
+                                input.rows() * (leftPos[1] - rectHeight1 / 2)),
+                        new Point(
+                                input.cols() * (leftPos[0] + rectWidth1 / 2),
+                                input.rows() * (leftPos[1] + rectHeight1 / 2)),
+                        new Scalar(0, 255, 0), 3);
+
+                Imgproc.rectangle(//5-7
+                        all,
+                        new Point(
+                                input.cols() * (rightPos[0] - rectWidth / 2),
+                                input.rows() * (rightPos[1] - rectHeight / 2)),
+                        new Point(
+                                input.cols() * (rightPos[0] + rectWidth / 2),
+                                input.rows() * (rightPos[1] + rectHeight / 2)),
+                        new Scalar(0, 255, 0), 3);
+
+                switch (stageToRenderToViewport) {
+                    case THRESHOLD: {
+                        return thresholdMat;
+                    }
+
+                    case detection: {
+                        return all;
+                    }
+
+                    case RAW_IMAGE: {
+                        return input;
+                    }
+
+                    default: {
+                        return input;
+                    }
+                }
             /*if(valLeft == 255){
                 //Траектория 1
             }

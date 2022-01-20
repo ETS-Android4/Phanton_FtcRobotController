@@ -82,15 +82,15 @@ public class a_Gamepad__krasn extends OpMode {
             rightF.setPower(-0.6 * pwrTrigger2);
             leftB.setPower(-0.6 * pwrTrigger2);
         } else if (gamepad1.left_bumper) {
-            leftF.setPower(0.3);
-            rightB.setPower(0.3);
-            rightF.setPower(0.3);
-            leftB.setPower(0.3);
+            leftF.setPower(0.25);
+            rightB.setPower(0.25);
+            rightF.setPower(0.25);
+            leftB.setPower(0.25);
         } else if (gamepad1.right_bumper) {
-            leftF.setPower(-0.3);
-            rightB.setPower(-0.3);
-            rightF.setPower(-0.3);
-            leftB.setPower(-0.3);
+            leftF.setPower(-0.25);
+            rightB.setPower(-0.25);
+            rightF.setPower(-0.25);
+            leftB.setPower(-0.25);
         } else {
             leftF.setPower(0);
             rightB.setPower(0);
@@ -99,9 +99,9 @@ public class a_Gamepad__krasn extends OpMode {
 
         }
         if (gamepad1.dpad_up){
-            pisun.setPower(-0.8);
+            pisun.setPower(-0.7);
         } else if (gamepad1.dpad_down){
-            pisun.setPower(0.8);
+            pisun.setPower(0.7);
         } else {
             pisun.setPower(0);
         }
