@@ -37,6 +37,7 @@ public class a_Gamepad__krasn extends OpMode {
         vikidisch = hardwareMap.crservo.get("vs");
         pod = hardwareMap.dcMotor.get("pod");
         sos = hardwareMap.dcMotor.get("sos");
+        pis.setPower(0.1);
     }
 
 
@@ -81,15 +82,15 @@ public class a_Gamepad__krasn extends OpMode {
             rightF.setPower(-0.6 * pwrTrigger2);
             leftB.setPower(-0.6 * pwrTrigger2);
         } else if (gamepad1.left_bumper) {
-            leftF.setPower(0.2);
-            rightB.setPower(0.2);
-            rightF.setPower(0.2);
-            leftB.setPower(0.2);
+            leftF.setPower(0.3);
+            rightB.setPower(0.3);
+            rightF.setPower(0.3);
+            leftB.setPower(0.3);
         } else if (gamepad1.right_bumper) {
-            leftF.setPower(-0.2);
-            rightB.setPower(-0.2);
-            rightF.setPower(-0.2);
-            leftB.setPower(-0.2);
+            leftF.setPower(-0.3);
+            rightB.setPower(-0.3);
+            rightF.setPower(-0.3);
+            leftB.setPower(-0.3);
         } else {
             leftF.setPower(0);
             rightB.setPower(0);

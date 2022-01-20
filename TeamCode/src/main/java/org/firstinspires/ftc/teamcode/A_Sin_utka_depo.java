@@ -41,9 +41,9 @@ import java.util.List;
  * monitor: 640 x 480
  *YES
  */
-@Autonomous(name= "A_Sin_utka_kub", group="Autonomous")
+@Autonomous(name= "A_Sin_utka_depo", group="Autonomous")
 //comment out this line before using
-public class A_Sin_utka_kub extends Methods {
+public class A_Sin_utka_depo extends Methods {
     private ElapsedTime runtime = new ElapsedTime();
 
     private static int valLeft = -1;
@@ -64,6 +64,7 @@ public class A_Sin_utka_kub extends Methods {
     private final int cols = 480;
 
 
+
     @Override
     public void runOpMode() throws InterruptedException {
 
@@ -82,22 +83,35 @@ public class A_Sin_utka_kub extends Methods {
         vikidisch = hardwareMap.crservo.get("vs");
         pod = hardwareMap.dcMotor.get("pod");
         sos = hardwareMap.dcMotor.get("sos");
+        pisun = hardwareMap.dcMotor.get("pis");
+        pis = hardwareMap.crservo.get("ps");
+        pis.setPower(-0.11);
 
         initGyro();
         waitForStart();
         runtime.reset();
         while (opModeIsActive()) {
-              telemetry.addData("Values", valLeft + "  " + valRight);
+            telemetry.addData("Values", valLeft + "  " + valRight);
             telemetry.addData("Height", rows);
             telemetry.addData("Width", cols);
             telemetry.update();
             sleep(100);
+            //vlevo(75, 0.2);
+           /* Pis_out(3000);
+            pisun.setPower(0);
+            sleep(500);
+            pis.setPower(0);
+            Pis_out(-2700);
+            pisun.setPower(0);
+            pis.setPower(0.1);
+            sleep(30000);*/
+
             if (valLeft == 255){
-                vpered(700, 0.4);
-                vpravo(770, 0.25);
+                vpered(400, 0.4);
+                vlevo(770, 0.25);
                 vikidisch_niz(-1);
-                vlevo(800, 0.4);
-                vpravo(100, 0.4);
+                vpravo(800, 0.4);
+                vlevo(100, 0.4);
                 nazad(1300, 0.3);
                 krut.setPower(-0.7);
                 sleep(1200);
@@ -108,7 +122,7 @@ public class A_Sin_utka_kub extends Methods {
                 krut.setPower(0);
                 sleep(1);
                 vpered(100, 0.4);
-                vpravo(400, 0.25);
+                vlevo(400, 0.25);
                 nazad(300, 0.2);
                 kub_down(1200);
                 pod.setPower(0);
@@ -117,10 +131,12 @@ public class A_Sin_utka_kub extends Methods {
             }
             else if (valRight == 255){
                 vpered(700, 0.4);
-                vpravo(790, 0.25);
+                vlevo(790, 0.25);
                 vikidisch_mid(-1);
-                vlevo(800, 0.4);
-                vpravo(100, 0.4);
+                vpravo(850, 0.4);
+                stop_all();
+                sleep(500);
+                vlevo(100, 0.4);
                 nazad(1300, 0.3);
                 krut.setPower(-0.7);
                 sleep(1200);
@@ -131,19 +147,21 @@ public class A_Sin_utka_kub extends Methods {
                 krut.setPower(0);
                 sleep(1);
                 vpered(100, 0.4);
-                vpravo(400, 0.25);
+                vlevo(400, 0.25);
                 nazad(300, 0.2);
                 kub_down(2300);
                 pod.setPower(0);
                 sleep(30000);
                 stop_all();
             } else {
-                vpered(700, 0.4);
-                vpravo(810, 0.25);
-                vikidisch_verx(-1);
-                vlevo(800, 0.4);
-                vpravo(100, 0.4);
-                nazad(1300, 0.3);
+                vpered(470, 0.4);
+                vlevo(870, 0.25);
+                vikidisch_verx(-0.87);
+                vpravo(850, 0.4);
+                stop_all();
+                sleep(500);
+                vlevo(100, 0.4);
+                nazad(1150, 0.3);
                 krut.setPower(-0.7);
                 sleep(1200);
                 nazad(35, 0.2);
@@ -153,8 +171,16 @@ public class A_Sin_utka_kub extends Methods {
                 krut.setPower(0);
                 sleep(1);
                 vpered(100, 0.4);
-                vpravo(400, 0.25);
-                nazad(300, 0.2);
+                vlevo(800, 0.25);
+                nazad(450, 0.2);
+                Pis_out(3000);
+                pisun.setPower(0);
+                sleep(500);
+                pis.setPower(0);
+                Pis_out(-2700);
+                pisun.setPower(0);
+                pis.setPower(0.1);
+                sleep(30000);
                 kub_down(3000);
                 pod.setPower(0);
                 sleep(30000);

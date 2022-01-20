@@ -71,6 +71,7 @@ public class A_Krasn_kub2 extends Methods {
         phoneCam.startStreaming(rows, cols, OpenCvCameraRotation.UPRIGHT);//display on RC*/
         //width, height
         //width = height in this case, because camera is in portrait mode.
+
         leftF = hardwareMap.dcMotor.get("lf");
         leftB = hardwareMap.dcMotor.get("lr");
         rightF = hardwareMap.dcMotor.get("rf");
@@ -80,6 +81,8 @@ public class A_Krasn_kub2 extends Methods {
         vikidisch = hardwareMap.crservo.get("vs");
         pod = hardwareMap.dcMotor.get("pod");
         sos = hardwareMap.dcMotor.get("sos");
+        pisun = hardwareMap.dcMotor.get("pis");
+        pis = hardwareMap.crservo.get("ps");
 
         initGyro();
         waitForStart();

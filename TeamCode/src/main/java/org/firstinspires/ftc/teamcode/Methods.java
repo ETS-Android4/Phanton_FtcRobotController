@@ -26,8 +26,8 @@ import java.util.List;
 
 @Autonomous(name= "Methods", group="Autonomous")
 public class Methods extends LinearOpMode {
-    DcMotor leftF, rightF, leftB, rightB, krut, vobla, sos, pod;
-    CRServo zaxvat, vikidisch;
+    DcMotor leftF, rightF, leftB, rightB, krut, pod, sos, pisun;
+    CRServo zaxvat, vikidisch, pis;
     BNO055IMU imu;
     Orientation angles;
     VoltageSensor sensor;
@@ -52,6 +52,18 @@ public class Methods extends LinearOpMode {
     private final int cols = 480;
 
 
+    public void Pis_out (int position) {
+        pisun.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        pisun.setTargetPosition(-position);
+        pisun.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        pisun.setPower(0.8);
+        while ((opModeIsActive() && (pisun.isBusy()))){
+            telemetry.addData("Pisun", pisun.getCurrentPosition());
+            telemetry.update();
+        }
+        pisun.setPower(0);
+        sleep(100);
+    }
     public void kub_verx () {
         pod.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         pod.setTargetPosition(3000); //2100 verx
@@ -557,24 +569,6 @@ public class Methods extends LinearOpMode {
         //
         imu = hardwareMap.get(BNO055IMU.class, "imu");
         imu.initialize(parameters);
-    }
-
-    public void vobla228() {
-        vobla.setPower(-0.6);
-        sleep(500);
-        vobla.setPower(0.1);
-        sleep(200);
-        vobla.setPower(0);
-        sleep(300);
-        zaxvat.setPower(-0.3);
-        vobla.setPower(0);
-        sleep(400);
-        vobla.setPower(0.6);
-        sleep(250);
-        vobla.setPower(0);
-        sleep(300);
-        zaxvat.setPower(0.53);
-        sleep(20);
     }
 
     double getBatteryVoltage() {

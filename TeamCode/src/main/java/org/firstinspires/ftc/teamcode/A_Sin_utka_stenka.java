@@ -82,6 +82,8 @@ public class A_Sin_utka_stenka extends Methods {
         vikidisch = hardwareMap.crservo.get("vs");
         pod = hardwareMap.dcMotor.get("pod");
         sos = hardwareMap.dcMotor.get("sos");
+        pisun = hardwareMap.dcMotor.get("pis");
+        pis = hardwareMap.crservo.get("ps");
 
         initGyro();
         waitForStart();

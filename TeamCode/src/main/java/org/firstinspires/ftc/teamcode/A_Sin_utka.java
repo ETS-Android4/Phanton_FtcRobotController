@@ -77,7 +77,6 @@ public class A_Sin_utka extends Methods {
         rightF = hardwareMap.dcMotor.get("rf");
         rightB = hardwareMap.dcMotor.get("rr");
         krut = hardwareMap.dcMotor.get("kr");
-        vobla = hardwareMap.dcMotor.get("vl");
         zaxvat = hardwareMap.crservo.get("zx");
         vikidisch = hardwareMap.crservo.get("vs");
         pod = hardwareMap.dcMotor.get("pod");

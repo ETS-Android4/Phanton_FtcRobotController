@@ -41,9 +41,9 @@ import java.util.List;
  * monitor: 640 x 480
  *YES
  */
-@Autonomous(name= "A_Krasn_utka_kub", group="Autonomous")
+@Autonomous(name= "A_Krasn_utka_depo", group="Autonomous")
 //comment out this line before using
-public class A_Krasn_utka_kub extends LinearOpMode {
+public class A_Krasn_utka_depo extends LinearOpMode {
     DcMotor leftF, rightF, leftB, rightB, krut, vobla, sos, pod;
     CRServo zaxvat, vikidisch;
     BNO055IMU imu;
