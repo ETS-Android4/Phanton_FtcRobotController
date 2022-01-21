@@ -57,8 +57,8 @@ public class A_Sin_utka_depo extends Methods {
     private static float offsetX = 0f / 8f;//changing this moves the three rects and the three circles left or right, range : (-2, 2) not inclusive
     private static float offsetY = 0f / 8f;//changing this moves the three rects and circles up or down, range: (-4, 4) not inclusive
 
-    private static float[] leftPos = {2.1f / 8f + offsetX, 4f / 8f + offsetY};
-    private static float[] rightPos = {3.7f / 8f + offsetX, 4f / 8f + offsetY};
+    private static float[] leftPos = {2.9f / 8f + offsetX, 4f / 8f + offsetY};
+    private static float[] rightPos = {5.7f / 8f + offsetX, 4.6f / 8f + offsetY};
 
     private final int rows = 640;
     private final int cols = 480;
