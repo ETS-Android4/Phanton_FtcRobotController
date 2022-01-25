@@ -45,19 +45,19 @@ import java.util.List;
 //comment out this line before using
 public class A_Sin_utka_stenka extends Methods {
     private ElapsedTime runtime = new ElapsedTime();
-
+ //TODO; НИЖНИЙ УРОВЕНЬ ФИКС
     private static int valLeft = -1;
     private static int valRight = -1;
-    private static float rectHeight = 1.5f / 8f;
-    private static float rectWidth = 1.f / 8f;
-    private static float rectHeight1 = 1.5f / 8f;
-    private static float rectWidth1 = 1f / 8f;
+    private static float rectHeight = 1f / 8f;
+    private static float rectWidth = 0.5f / 8f;
+    private static float rectHeight1 = 1f / 8f;
+    private static float rectWidth1 = 0.5f / 8f;
 
     private static float offsetX = 0f / 8f;//changing this moves the three rects and the three circles left or right, range : (-2, 2) not inclusive
     private static float offsetY = 0f / 8f;//changing this moves the three rects and circles up or down, range: (-4, 4) not inclusive
 
-    private static float[] leftPos = {2.9f / 8f + offsetX, 4f / 8f + offsetY};
-    private static float[] rightPos = {5.7f / 8f + offsetX, 4.6f / 8f + offsetY};
+    private static float[] leftPos = {1.4f / 8f + offsetX, 4.8f / 8f + offsetY};
+    private static float[] rightPos = {4.1f / 8f + offsetX, 5f / 8f + offsetY};
 
     private final int rows = 640;
     private final int cols = 480;
@@ -107,12 +107,12 @@ public class A_Sin_utka_stenka extends Methods {
                 sleep(1); //T
                 vpered(1250, 0.4);//TODO:
                 vlevo(770, 0.25); //-850
-                vikidisch_niz(-1);
+                vikidisch_mid(-1);
                 vpravo(400, 0.4);
                 razvarot(1100, 0.3);
                 vlevo(500, 0.3);
                 nazad(1250, 0.4);
-                kub_down(1200);
+                kub_down(1950);
                 pod.setPower(0);
                 stop_all();
                 sleep(30000);

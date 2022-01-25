@@ -48,16 +48,16 @@ public class A_Sin_Kub_2 extends Methods {
 
     private static int valLeft = -1;
     private static int valRight = -1;
-    private static float rectHeight = 1.5f / 8f;
-    private static float rectWidth = 1.f / 8f;
-    private static float rectHeight1 = 1.5f / 8f;
-    private static float rectWidth1 = 1f / 8f;
+    private static float rectHeight = 1f / 8f;
+    private static float rectWidth = 0.5f / 8f;
+    private static float rectHeight1 = 1f / 8f;
+    private static float rectWidth1 = 0.5f / 8f;
 
     private static float offsetX = 0f / 8f;//changing this moves the three rects and the three circles left or right, range : (-2, 2) not inclusive
     private static float offsetY = 0f / 8f;//changing this moves the three rects and circles up or down, range: (-4, 4) not inclusive
 
-    private static float[] leftPos = {3.5f / 8f + offsetX, 3.6f / 8f + offsetY};
-    private static float[] rightPos = {5.8f / 8f + offsetX, 4f / 8f + offsetY};
+    private static float[] leftPos = {2.7f / 8f + offsetX, 5.1f / 8f + offsetY};
+    private static float[] rightPos = {5.2f / 8f + offsetX, 5.1f / 8f + offsetY};
 
     private final int rows = 640;
     private final int cols = 480;
@@ -83,8 +83,8 @@ public class A_Sin_Kub_2 extends Methods {
         sos = hardwareMap.dcMotor.get("sos");
         pisun = hardwareMap.dcMotor.get("pis");
         pis = hardwareMap.crservo.get("ps");
-
-        initGyro();
+        pis = hardwareMap.crservo.get("ps");
+        pis.setPower(-0.11);
         waitForStart();
         runtime.reset();
         while (opModeIsActive()) {
@@ -95,12 +95,12 @@ public class A_Sin_Kub_2 extends Methods {
             sleep(100);
             if (valLeft == 255) {
                 vpered(400, 0.2);
-                vpravo(750, 0.3);
-                vikidisch_niz(1);
+                vpravo(660, 0.3);
+                vikidisch_mid(1);
                 vlevo(1000, 0.3);
                 nazad(1050, 0.4);
                 nazad(500, 0.2);
-                kub_down(1300);
+                kub_down(2000);
                 sos.setPower(-1);
                 nazad(50, 0.2);
                 sleep(1500);
@@ -109,6 +109,7 @@ public class A_Sin_Kub_2 extends Methods {
                 sos.setPower(0);
                 sleep(1);
                 vpered(1650, 0.4);
+                vlevo(250,0.4);
                 vpravo(780, 0.3);
                 vikidisch_mid(1);
                 vlevo(1000, 0.4);
@@ -134,6 +135,7 @@ public class A_Sin_Kub_2 extends Methods {
                 sos.setPower(0);
                 sleep(1);
                 vpered(1650, 0.4);
+                vlevo(250,0.4);
                 vpravo(780, 0.3);
                 vikidisch_mid(1);
                 vlevo(1000, 0.4);
@@ -159,6 +161,7 @@ public class A_Sin_Kub_2 extends Methods {
                 sos.setPower(0);
                 sleep(1);
                 vpered(1660, 0.4);
+                vlevo(250,0.4);
                 vpravo(780, 0.3);
                 vikidisch_mid(1);
                 vlevo(1000, 0.4);

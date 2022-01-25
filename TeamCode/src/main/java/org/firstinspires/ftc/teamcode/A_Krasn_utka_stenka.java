@@ -48,16 +48,16 @@ public class A_Krasn_utka_stenka extends Methods {
 
     private static int valLeft = -1;
     private static int valRight = -1;
-    private static float rectHeight = 1.5f / 8f;
-    private static float rectWidth = 1.f / 8f;
-    private static float rectHeight1 = 1.5f / 8f;
-    private static float rectWidth1 = 1f / 8f;
+    private static float rectHeight = 1f / 8f;
+    private static float rectWidth = 0.5f / 8f;
+    private static float rectHeight1 = 1f / 8f;
+    private static float rectWidth1 = 0.5f / 8f;
 
     private static float offsetX = 0f / 8f;//changing this moves the three rects and the three circles left or right, range : (-2, 2) not inclusive
     private static float offsetY = 0f / 8f;//changing this moves the three rects and circles up or down, range: (-4, 4) not inclusive
 
-    private static float[] leftPos = {3.5f / 8f + offsetX, 4.8f / 8f + offsetY};
-    private static float[] rightPos = {5.7f / 8f + offsetX, 4.8f / 8f + offsetY};
+    private static float[] leftPos = {2.7f / 8f + offsetX, 5.1f / 8f + offsetY};
+    private static float[] rightPos = {5.4f / 8f + offsetX, 5.1f / 8f + offsetY};
 
     private final int rows = 640;
     private final int cols = 480;
@@ -106,14 +106,14 @@ public class A_Krasn_utka_stenka extends Methods {
                 krut.setPower(0);
                 sleep(1); //T
                 vpered(1150, 0.4);//TODO:
-                vpravo(760, 0.25); //-850
-                vikidisch_niz(1);
+                vpravo(660, 0.25); //-850
+                vikidisch_mid(1);
                 vlevo(400, 0.4);
                 razvarot(1100, 0.3);
-                vpravo(500, 0.3);
-                nazad(1150, 0.4);
+                vpravo(600, 0.3);
+                nazad(1350, 0.4);
                 //vpravo(-500, 0.4);
-                kub_down(1200);
+                kub_down(1900);
                 pod.setPower(0);
                 stop_all();
                 sleep(30000);
@@ -129,12 +129,12 @@ public class A_Krasn_utka_stenka extends Methods {
                 krut.setPower(0);
                 sleep(1); //T
                 vpered(1150, 0.4);//TODO:
-                vpravo(810, 0.25); //-850
+                vpravo(760, 0.25); //-850
                 vikidisch_mid(1);
                 vlevo(400, 0.4);
                 razvarot(1100, 0.3);
-                vpravo(500, 0.3);
-                nazad(1150, 0.4);
+                vpravo(600, 0.3);
+                nazad(1250, 0.4);
                 //vpravo(-500, 0.4);
                 kub_down(1950);
                 pod.setPower(0);
@@ -156,8 +156,8 @@ public class A_Krasn_utka_stenka extends Methods {
                 vikidisch_verx(0.92);
                 vlevo(400, 0.3);
                 razvarot(1100, 0.3);
-                vpravo(500, 0.3);
-                nazad(1250, 0.4);
+                vpravo(600, 0.3);
+                nazad(1350, 0.4);
                 //vpravo(-500, 0.4);
                 kub_down(2950);
                 pod.setPower(0);

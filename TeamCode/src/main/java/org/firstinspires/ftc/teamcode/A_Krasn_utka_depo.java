@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.teamcode;
 
+
 import com.qualcomm.hardware.bosch.BNO055IMU;
 import com.qualcomm.hardware.bosch.JustLoggingAccelerationIntegrator;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
@@ -43,86 +44,163 @@ import java.util.List;
  */
 @Autonomous(name= "A_Krasn_utka_depo", group="Autonomous")
 //comment out this line before using
-public class A_Krasn_utka_depo extends Methods {
-    DcMotor leftF, rightF, leftB, rightB, krut, vobla, sos, pod;
-    CRServo zaxvat, vikidisch;
-    BNO055IMU imu;
-    Orientation angles;
-    VoltageSensor sensor;
-    double speed;
+public class A_Krasn_utka_depo extends Methods{
     private ElapsedTime runtime = new ElapsedTime();
-
-    //0 means skystone, 1 means yellow stone
-    //-1 for debug, but we can keep it like this because if it works, it should change to either 0 or 255
 
     private static int valLeft = -1;
     private static int valRight = -1;
-    private static float rectHeight = 1.15f / 8f;
-    private static float rectWidth = 0.8f / 8f;
-    private static float rectHeight1 = 1.15f / 8f;
-
+    private static float rectHeight = 1f / 8f;
+    private static float rectWidth = 0.5f / 8f;
+    private static float rectHeight1 = 1f / 8f;
     private static float rectWidth1 = 0.5f / 8f;
 
     private static float offsetX = 0f / 8f;//changing this moves the three rects and the three circles left or right, range : (-2, 2) not inclusive
     private static float offsetY = 0f / 8f;//changing this moves the three rects and circles up or down, range: (-4, 4) not inclusive
 
-    private static float[] leftPos = {3.5f / 8f + offsetX, 4.8f / 8f + offsetY};
-    private static float[] rightPos = {5.7f / 8f + offsetX, 4.8f / 8f + offsetY};
+    private static float[] leftPos = {2.7f / 8f + offsetX, 5.1f / 8f + offsetY};
+    private static float[] rightPos = {5.4f / 8f + offsetX, 5.1f / 8f + offsetY};
 
     private final int rows = 640;
     private final int cols = 480;
 
 
+
     @Override
     public void runOpMode() throws InterruptedException {
 
-        /*int cameraMonitorViewId = hardwareMap.appContext.getResources().getIdentifier("cameraMonitorViewId", "id", hardwareMap.appContext.getPackageName());
+        int cameraMonitorViewId = hardwareMap.appContext.getResources().getIdentifier("cameraMonitorViewId", "id", hardwareMap.appContext.getPackageName());
         phoneCam = OpenCvCameraFactory.getInstance().createWebcam(hardwareMap.get(WebcamName.class, "Webcam 1"), cameraMonitorViewId);
         phoneCam.openCameraDevice();
         phoneCam.setPipeline(new StageSwitchingPipeline());//different stages
         phoneCam.startStreaming(rows, cols, OpenCvCameraRotation.UPRIGHT);//display on RC*/
-        //width, height
         //width = height in this case, because camera is in portrait mode.
         leftF = hardwareMap.dcMotor.get("lf");
         leftB = hardwareMap.dcMotor.get("lr");
         rightF = hardwareMap.dcMotor.get("rf");
         rightB = hardwareMap.dcMotor.get("rr");
         krut = hardwareMap.dcMotor.get("kr");
-        vobla = hardwareMap.dcMotor.get("vl");
         zaxvat = hardwareMap.crservo.get("zx");
         vikidisch = hardwareMap.crservo.get("vs");
         pod = hardwareMap.dcMotor.get("pod");
         sos = hardwareMap.dcMotor.get("sos");
-
-        initGyro();
+        pisun = hardwareMap.dcMotor.get("pis");
+        pis = hardwareMap.crservo.get("ps");
+        pis.setPower(-0.11);
         waitForStart();
         runtime.reset();
         while (opModeIsActive()) {
-            /*  telemetry.addData("Values", valLeft + "  " + valRight);
+            telemetry.addData("Values", valLeft + "  " + valRight);
             telemetry.addData("Height", rows);
             telemetry.addData("Width", cols);
             telemetry.update();
-            sleep(100);*/
-            vpered(900, 0.4);
-            vpravo(-100, 0.25);
-            vikidisch_verx(0.92);
-            vpravo(500, 0.4);
-            razvarot(1000, 0.25);
-            vpravo(-1000, 0.4);
-            vpered(-550, 0.3);
-            krut.setPower(-1);
-            sleep(2000);
-            krut.setPower(0);
-            sleep(1);
-            vpered(340, 0.4);//TODO:
-            vpravo(-400, 0.25);
-            vpravo(100, 0.2);
-            vikidisch.setPower(1);
+            sleep(100);
+            //vlevo(75, 0.2);
+           /* Pis_out(3000);
+            pisun.setPower(0);
             sleep(500);
-            kub_down(3000);
-            pod.setPower(0);
-            stop_all();
-            sleep(30000);
+            pis.setPower(0);
+            Pis_out(-2700);
+            pisun.setPower(0);
+            pis.setPower(0.1);
+            sleep(30000);*/
+
+            if (valLeft == 255){
+                vpered(550, 0.4);
+                vpravo(600, 0.25);
+                vikidisch_mid(1);
+                vlevo(700, 0.4);
+                vpravo(100, 0.4);
+                nazad(1060, 0.3);
+                krut.setPower(-0.7);
+                sleep(1200);
+                nazad(35, 0.2);
+                sleep(1200);
+                nazad(35, 0.2);
+                sleep(1500);
+                krut.setPower(0);
+                sleep(1);
+                vpered(100, 0.4);
+                vpravo(800, 0.25);
+                nazad(450, 0.2);
+                Pis_out(3400);
+                pisun.setPower(0);
+                sleep(500);
+                pis.setPower(0);
+                Pis_out(-3100);
+                pisun.setPower(0);
+                pis.setPower (0.1);
+                sleep(1);
+                kub_down(2300);
+                pod.setPower(0);
+                sleep(1);
+                sleep(30000);
+                stop_all();
+            }
+            else if (valRight == 255){
+                vpered(550, 0.4);
+                vpravo(810, 0.25);
+                vikidisch_mid(1);
+                vlevo(850, 0.4);
+                stop_all();
+                sleep(500);
+                vlevo(100, 0.4);
+                nazad(1200, 0.3);
+                krut.setPower(-0.7);
+                sleep(1200);
+                nazad(35, 0.2);
+                sleep(1200);
+                nazad(35, 0.2);
+                sleep(1500);
+                krut.setPower(0);
+                sleep(1);
+                vlevo(100, 0.4);
+                vpravo(700, 0.25);
+                nazad(450, 0.2);
+                Pis_out(3200);
+                pisun.setPower(0);
+                sleep(500);
+                pis.setPower(0);
+                Pis_out(-2900);
+                pisun.setPower(0);
+                pis.setPower(0.1);
+                sleep(1);
+                kub_down(2300);
+                pod.setPower(0);
+                sleep(30000);
+                stop_all();
+            } else {
+                vpered(470, 0.4);
+                vpravo(870, 0.25);
+                vikidisch_verx(0.87);
+                vlevo(850, 0.4);
+                stop_all();
+                sleep(500);
+                vpravo(100, 0.4);
+                nazad(1150, 0.3);
+                krut.setPower(-0.7);
+                sleep(1200);
+                nazad(35, 0.2);
+                sleep(1200);
+                nazad(35, 0.2);
+                sleep(1500);
+                krut.setPower(0);
+                sleep(1);
+                vpered(100, 0.4);
+                vpravo(600, 0.25);
+                nazad(450, 0.2);
+                Pis_out(3000);
+                pisun.setPower(0);
+                sleep(500);
+                pis.setPower(0);
+                Pis_out(-2700);
+                pisun.setPower(0);
+                pis.setPower(0.1);
+                sleep(1);
+                kub_down(3000);
+                pod.setPower(0);
+                sleep(30000);
+                stop_all();
+            } } }
             /*if(valLeft == 255){
                 //Траектория 1
             }
@@ -134,8 +212,7 @@ public class A_Krasn_utka_depo extends Methods {
             }*/
 
 
-        }
-    }
+
     //detection pipeline
     static class StageSwitchingPipeline extends OpenCvPipeline
     {

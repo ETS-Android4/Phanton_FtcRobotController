@@ -50,8 +50,17 @@ public class Methods extends LinearOpMode {
 
     private final int rows = 640;
     private final int cols = 480;
-
-
+    double tick;
+    int kal;
+    int x = 0;
+public void Pis_UP (double tick, int kal){
+    while (x <= kal) {
+        double pis2 = pis.getPower();
+     pis.setPower(pis2 + tick*x);
+     sleep(50);
+     x += 1;
+    }
+    }
     public void Pis_out (int position) {
         pisun.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         pisun.setTargetPosition(-position);

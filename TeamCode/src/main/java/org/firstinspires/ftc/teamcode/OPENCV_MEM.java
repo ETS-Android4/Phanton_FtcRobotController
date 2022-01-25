@@ -47,6 +47,7 @@ import java.util.List;
  *YES
  */
 @Autonomous(name= "OPENCV", group="Autonomous")
+@Disabled
 //comment out this line before using
 public class OPENCV_MEM extends LinearOpMode {
 

@@ -48,17 +48,16 @@ public class A_Sin_utka_depo extends Methods {
 
     private static int valLeft = -1;
     private static int valRight = -1;
-    private static float rectHeight = 1.5f / 8f;
-    private static float rectWidth = 1.5f / 8f;
-    private static float rectHeight1 = 1.5f / 8f;
-
-    private static float rectWidth1 = 1.5f / 8f;
+    private static float rectHeight = 1f / 8f;
+    private static float rectWidth = 0.5f / 8f;
+    private static float rectHeight1 = 1f / 8f;
+    private static float rectWidth1 = 0.5f / 8f;
 
     private static float offsetX = 0f / 8f;//changing this moves the three rects and the three circles left or right, range : (-2, 2) not inclusive
     private static float offsetY = 0f / 8f;//changing this moves the three rects and circles up or down, range: (-4, 4) not inclusive
 
-    private static float[] leftPos = {2.9f / 8f + offsetX, 4f / 8f + offsetY};
-    private static float[] rightPos = {5.7f / 8f + offsetX, 4.6f / 8f + offsetY};
+    private static float[] leftPos = {1.4f / 8f + offsetX, 4.8f / 8f + offsetY};
+    private static float[] rightPos = {4.1f / 8f + offsetX, 5f / 8f + offsetY};
 
     private final int rows = 640;
     private final int cols = 480;
@@ -107,12 +106,12 @@ public class A_Sin_utka_depo extends Methods {
             sleep(30000);*/
 
             if (valLeft == 255){
-                vpered(400, 0.4);
-                vlevo(770, 0.25);
-                vikidisch_niz(-1);
+                vpered(550, 0.4);
+                vlevo(680, 0.25);
+                vikidisch_mid(-1);
                 vpravo(800, 0.4);
                 vlevo(100, 0.4);
-                nazad(1300, 0.3);
+                nazad(1060, 0.3);
                 krut.setPower(-0.7);
                 sleep(1200);
                 nazad(35, 0.2);
@@ -122,22 +121,31 @@ public class A_Sin_utka_depo extends Methods {
                 krut.setPower(0);
                 sleep(1);
                 vpered(100, 0.4);
-                vlevo(400, 0.25);
-                nazad(300, 0.2);
-                kub_down(1200);
+                vlevo(800, 0.25);
+                nazad(250, 0.2);
+                Pis_out(3400);
+                pisun.setPower(0);
+                sleep(500);
+                pis.setPower(0);
+                Pis_out(-3100);
+                pisun.setPower(0);
+                pis.setPower(0.1);
+                sleep(1);
+                kub_down(2300);
                 pod.setPower(0);
+                sleep(1);
                 sleep(30000);
                 stop_all();
             }
             else if (valRight == 255){
-                vpered(700, 0.4);
-                vlevo(790, 0.25);
+                vpered(550, 0.4);
+                vlevo(810, 0.25);
                 vikidisch_mid(-1);
                 vpravo(850, 0.4);
                 stop_all();
                 sleep(500);
                 vlevo(100, 0.4);
-                nazad(1300, 0.3);
+                nazad(1200, 0.3);
                 krut.setPower(-0.7);
                 sleep(1200);
                 nazad(35, 0.2);
@@ -147,8 +155,16 @@ public class A_Sin_utka_depo extends Methods {
                 krut.setPower(0);
                 sleep(1);
                 vpered(100, 0.4);
-                vlevo(400, 0.25);
-                nazad(300, 0.2);
+                vlevo(700, 0.25);
+                nazad(450, 0.2);
+                Pis_out(3200);
+                pisun.setPower(0);
+                sleep(500);
+                pis.setPower(0);
+                Pis_out(-2900);
+                pisun.setPower(0);
+                pis.setPower(0.1);
+                sleep(1);
                 kub_down(2300);
                 pod.setPower(0);
                 sleep(30000);
@@ -180,7 +196,7 @@ public class A_Sin_utka_depo extends Methods {
                 Pis_out(-2700);
                 pisun.setPower(0);
                 pis.setPower(0.1);
-                sleep(30000);
+                sleep(1);
                 kub_down(3000);
                 pod.setPower(0);
                 sleep(30000);

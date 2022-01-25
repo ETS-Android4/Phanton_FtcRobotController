@@ -48,16 +48,16 @@ public class A_Krasn_kub2 extends Methods {
 
     private static int valLeft = -1;
     private static int valRight = -1;
-    private static float rectHeight = 1.5f / 8f;
-    private static float rectWidth = 1.f / 8f;
-    private static float rectHeight1 = 1.5f / 8f;
-    private static float rectWidth1 = 1f / 8f;
+    private static float rectHeight = 1f / 8f;
+    private static float rectWidth = 0.5f / 8f;
+    private static float rectHeight1 = 1f / 8f;
+    private static float rectWidth1 = 0.5f / 8f;
 
     private static float offsetX = 0f / 8f;//changing this moves the three rects and the three circles left or right, range : (-2, 2) not inclusive
     private static float offsetY = 0f / 8f;//changing this moves the three rects and circles up or down, range: (-4, 4) not inclusive
 
-    private static float[] leftPos = {2.7f / 8f + offsetX, 2.8f / 8f + offsetY};
-    private static float[] rightPos = {5.4f / 8f + offsetX, 3f / 8f + offsetY};
+    private static float[] leftPos = {1.8f / 8f + offsetX, 5.1f / 8f + offsetY};
+    private static float[] rightPos = {4.3f / 8f + offsetX, 5.1f / 8f + offsetY};
 
     private final int rows = 640;
     private final int cols = 480;
@@ -94,14 +94,13 @@ public class A_Krasn_kub2 extends Methods {
             telemetry.update();
             sleep(100);
             if (valLeft == 255) {
-                sleep(100);
-                vpered(500, 0.2);
-                vlevo(705, 0.3);
-                vikidisch_niz(-1);
+                vpered(400, 0.2);
+                vlevo(660, 0.3);
+                vikidisch_mid(1);
                 vpravo(1000, 0.3);
                 nazad(1050, 0.4);
                 nazad(500, 0.2);
-                kub_down(1200);
+                kub_down(2000);
                 sos.setPower(-1);
                 nazad(50, 0.2);
                 sleep(1500);
@@ -109,71 +108,70 @@ public class A_Krasn_kub2 extends Methods {
                 sleep(1000);
                 sos.setPower(0);
                 sleep(1);
-                vpered(1570, 0.4);
-                vlevo(820, 0.3);
-                vikidisch_mid(-1);
+                vpered(1650, 0.4);
+                vpravo(250,0.4);
+                vlevo(780, 0.3);
+                vikidisch_mid(1);
                 vpravo(1000, 0.4);
-                vlevo(50, 0.2);
-                nazad(1150, 0.4);
-                //vpravo(-500, 0.4);
-                //kub_down(-1950);
+                nazad(1450, 0.4);
+                //vpravo(500, 0.4);
+                kub_down(1900);
                 pod.setPower(0);
                 stop_all();
                 sleep(30000);
             } else if (valRight == 255) {
-                vpered(510, 0.2);
-                vlevo(750, 0.3);
-                vikidisch_mid(-1);
+                vpered(400, 0.2);
+                vlevo(745, 0.3);
+                vikidisch_mid(1);
                 vpravo(1000, 0.3);
                 nazad(1050, 0.4);
                 nazad(500, 0.2);
-                kub_down(2350);
+                kub_down(2000);
                 sos.setPower(-1);
-                nazad(100, 0.2);
+                nazad(50, 0.2);
                 sleep(1500);
                 sos.setPower(1);
                 sleep(1000);
                 sos.setPower(0);
                 sleep(1);
-                vpered(1590, 0.4);
+                vpered(1650, 0.4);
+                vpravo(250,0.4);
                 vlevo(780, 0.3);
-                vikidisch_mid(-1);
+                vikidisch_mid(1);
                 vpravo(1000, 0.4);
-                vlevo(50, 0.2);
-                nazad(1100, 0.4);
-                //vpravo(-500, 0.4);
-                kub_down(2300);
+                nazad(1450, 0.4);
+                //vpravo(500, 0.4);
+                kub_down(1900);
                 pod.setPower(0);
                 stop_all();
                 sleep(30000);
             } else {
-                vpered(500, 0.2);
-                vlevo(810, 0.3);
-                vikidisch_verx(-0.87);
-                vpravo(900, 0.3);
+                vpered(400, 0.2);
+                vlevo(850, 0.3);
+                vikidisch_verx(0.92);
+                vlevo(1000, 0.3);
                 nazad(1050, 0.4);
                 nazad(500, 0.2);
                 kub_down(2950);
                 sos.setPower(-1);
-                vpered(-50,0.2);
+                vpered(-50, 0.2);
                 sleep(1500);
                 sos.setPower(1);
                 sleep(1000);
                 sos.setPower(0);
                 sleep(1);
-                vpered(1570, 0.4);
-                vlevo(790, 0.3);
-                vikidisch_mid(-1);
-                vpravo(1000, 0.4);
-                vlevo(50, 0.2);
-                nazad(1150, 0.4);
+                vpered(1660, 0.4);
+                vlevo(250,0.4);
+                vpravo(780, 0.3);
+                vikidisch_mid(1);
+                vlevo(1000, 0.4);
+                nazad(1550, 0.4);
+                //vpravo(500, 0.4);
                 kub_down(1950);
-                //vpravo(-500, 0.4);
                 pod.setPower(0);
                 stop_all();
                 sleep(30000);
             }
-
         }
     }
     static class StageSwitchingPipeline extends OpenCvPipeline {

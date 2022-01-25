@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.teamcode;
 
+
 import com.qualcomm.hardware.bosch.BNO055IMU;
 import com.qualcomm.hardware.bosch.JustLoggingAccelerationIntegrator;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
@@ -7,9 +8,9 @@ import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.Servo;
+import com.qualcomm.robotcore.hardware.VoltageSensor;
 import com.qualcomm.robotcore.util.ElapsedTime;
-
-import  com.qualcomm.robotcore.hardware.VoltageSensor;
 
 import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
 import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
@@ -19,11 +20,15 @@ import org.firstinspires.ftc.robotcore.external.navigation.Orientation;
 import org.opencv.core.Core;
 import org.opencv.core.Mat;
 import org.opencv.core.MatOfPoint;
+import org.opencv.core.MatOfPoint2f;
 import org.opencv.core.Point;
+import org.opencv.core.Rect;
 import org.opencv.core.Scalar;
 import org.opencv.imgproc.Imgproc;
+import org.openftc.easyopencv.OpenCvCamera;
 import org.openftc.easyopencv.OpenCvCameraFactory;
 import org.openftc.easyopencv.OpenCvCameraRotation;
+import org.openftc.easyopencv.OpenCvInternalCamera;
 import org.openftc.easyopencv.OpenCvPipeline;
 import org.openftc.easyopencv.OpenCvWebcam;
 
@@ -42,167 +47,115 @@ import java.util.List;
  * monitor: 640 x 480
  *YES
  */
-@Autonomous(name= "Gyrokall_Custom", group="Autonomous")
+@Autonomous(name= "A_Sin_kub_1337", group="Autonomous")
 @Disabled
 //comment out this line before using
-public class Gyrokall_Custom extends LinearOpMode {
+public class A_Sin_Kub extends LinearOpMode {
     DcMotor leftF, rightF, leftB, rightB, krut, vobla, sos, pod;
     CRServo zaxvat, vikidisch;
     BNO055IMU imu;
-    Orientation lastAngles = new Orientation();
-    double globalAngle, power = .30, correction, rotation;
-    VoltageSensor sensor;
-    double speed;
+    Orientation angles;
+    double speed = 0.3;
+    int uroven;
     private ElapsedTime runtime = new ElapsedTime();
-    PIDController pidRotate;
+
     //0 means skystone, 1 means yellow stone
     //-1 for debug, but we can keep it like this because if it works, it should change to either 0 or 255
 
     private static int valLeft = -1;
     private static int valRight = -1;
-    private static float rectHeight = 1.15f / 8f;
-    private static float rectWidth = 0.8f / 8f;
-    private static float rectHeight1 = 1.15f / 8f;
+    private static float rectHeight = 1.5f / 8f;
+    private static float rectWidth = 1.5f / 8f;
+    private static float rectHeight1 = 4 / 8f;
 
-    private static float rectWidth1 = 0.5f / 8f;
+    private static float rectWidth1 = 4f / 8f;
 
     private static float offsetX = 0f / 8f;//changing this moves the three rects and the three circles left or right, range : (-2, 2) not inclusive
     private static float offsetY = 0f / 8f;//changing this moves the three rects and circles up or down, range: (-4, 4) not inclusive
 
-    private static float[] leftPos = {1.58f / 8f + offsetX, 1.3f / 8f + offsetY};
-    private static float[] rightPos = {2.27f / 8f + offsetX, 1.3f / 8f + offsetY};
+    private static float[] leftPos = {2.7f / 8f + offsetX, 4.5f / 8f + offsetY};
+    private static float[] rightPos = {8 / 8f + offsetX, 8f / 8f + offsetY};
 
     private final int rows = 640;
     private final int cols = 480;
-
-    //OpenCvWebcam phoneCam;
-    private double getAngle() {
-        // We experimentally determined the Z axis is the axis we want to use for heading angle.
-        // We have to process the angle because the imu works in euler angles so the Z axis is
-        // returned as 0 to +180 or 0 to -180 rolling back to -179 or +179 when rotation passes
-        // 180 degrees. We detect this transition and track the total cumulative angle of rotation.
-
-        Orientation angles = imu.getAngularOrientation(AxesReference.INTRINSIC, AxesOrder.YXZ, AngleUnit.DEGREES);
-
-        double deltaAngle = angles.firstAngle - lastAngles.firstAngle;
-
-        if (deltaAngle < -180)
-            deltaAngle += 360;
-        else if (deltaAngle > 180)
-            deltaAngle -= 360;
-
-        globalAngle += deltaAngle;
-
-        lastAngles = angles;
-
-        return globalAngle;
-    }
-
-    private void rotate(int degrees, double power) {
-        // restart imu angle tracking.
-
-
-        // if degrees > 359 we cap at 359 with same sign as original degrees.
-        if (Math.abs(degrees) > 359) degrees = (int) Math.copySign(359, degrees);
-
-        // start pid controller. PID controller will monitor the turn angle with respect to the
-        // target angle and reduce power as we approach the target angle. This is to prevent the
-        // robots momentum from overshooting the turn after we turn off the power. The PID controller
-        // reports onTarget() = true when the difference between turn angle and target angle is within
-        // 1% of target (tolerance) which is about 1 degree. This helps prevent overshoot. Overshoot is
-        // dependant on the motor and gearing configuration, starting power, weight of the robot and the
-        // on target tolerance. If the controller overshoots, it will reverse the sign of the output
-        // turning the robot back toward the setpoint value.
-
-
-        pidRotate.setSetpoint(degrees);
-        pidRotate.setInputRange(0, degrees);
-        pidRotate.setOutputRange(0, power);
-        pidRotate.setTolerance(1);
-        pidRotate.enable();
-
-        // getAngle() returns + when rotating counter clockwise (left) and - when rotating
-        // clockwise (right).
-
-        // rotate until turn is completed.
-
-        if (degrees < 0) {
-            // On right turn we have to get off zero first.
-            while (opModeIsActive() && getAngle() == 0) {
-                leftF.setPower(power);
-                leftB.setPower(power);
-                rightF.setPower(power);
-                rightB.setPower(power);
-                sleep(100);
-            }
-
-            do {
-                power = pidRotate.performPID(getAngle()); // power will be - on right turn.
-                leftF.setPower(-power);
-                leftB.setPower(-power);
-                rightF.setPower(-power);
-                rightB.setPower(-power);
-            } while (opModeIsActive() && !pidRotate.onTarget());
-        } else    // left turn.
-            do {
-                power = pidRotate.performPID(getAngle()); // power will be + on left turn.
-                leftF.setPower(-power);
-                leftB.setPower(-power);
-                rightF.setPower(-power);
-                rightB.setPower(-power);
-            } while (opModeIsActive() && !pidRotate.onTarget());
-
-        // turn the motors off.
-        leftF.setPower(0);
-        leftB.setPower(0);
-        rightF.setPower(0);
-        rightB.setPower(0);
-
-        rotation = getAngle();
-
-        // wait for rotation to stop.
-        sleep(500);
-    }
-
-
+    OpenCvWebcam phoneCam;
     public void kub_verx () {
         pod.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        pod.setTargetPosition(2650);
+        pod.setTargetPosition(2550); //2100 verx
         pod.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         pod.setPower(1);
         while ((opModeIsActive() && (pod.isBusy()))){
         }
         pod.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        sleep(100);
-        while (opModeIsActive() && (pod.isBusy())) {
-
-        }
         pod.setPower(0);
-        sleep(1);
-    }
+        sleep(100);
 
-    public void kub_down () {
+    }
+    public void kub_mid () {
         pod.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        pod.setTargetPosition(-2400);
+        pod.setTargetPosition(1950); //2100 verx
+        pod.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        pod.setPower(1);
+        while ((opModeIsActive() && (pod.isBusy()))){
+        }
+        pod.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        pod.setPower(0);
+        sleep(100);
+
+    }
+    public void kub_niz (){
+        pod.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        pod.setTargetPosition(1450); //2100 verx
+        pod.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        pod.setPower(1);
+        while ((opModeIsActive() && (pod.isBusy()))){
+        }
+        pod.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        pod.setPower(0);
+        sleep(100);
+
+    }
+
+    public void kub_down (int uroven) {
+        pod.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        pod.setTargetPosition(uroven);
         pod.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         pod.setPower(1);
         while ((opModeIsActive() && (pod.isBusy()))){
         }
         pod.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         sleep(100);
-        while (opModeIsActive() && (pod.isBusy())) {
 
-        }
         pod.setPower(0);
         sleep(1);
     }
 
-    public void vikidisch_verx(){
+    public void vikidisch_verx(int napr){ //-1 - left, 1 - right
         kub_verx();
         stop_all();
-        sleep(100);
-        vikidisch.setPower(-1);
         sleep(1000);
+        vikidisch.setPower(napr);
+        sleep(1000);
+        vikidisch.setPower(0);
+        sleep(500);
+    }
+    public void vikidisch_mid(int napr){
+        kub_mid();
+        stop_all();
+        sleep(1000);
+        vikidisch.setPower(napr); //-1
+        sleep(2000);
+        vikidisch.setPower(0);
+        sleep(500);
+    }
+    public void vikidisch_niz( int napr){
+        kub_niz();
+        stop_all();
+        sleep(1000);
+        vikidisch.setPower(napr); //-1
+        sleep(2000);
+        vikidisch.setPower(0);
+        sleep(500);
     }
 
     public void resetEncoders() {
@@ -470,7 +423,156 @@ public class Gyrokall_Custom extends LinearOpMode {
         leftF.setPower(0);
     }
 
+    public void stop_all3() {
+        rightB.setPower(-0);
+        leftB.setPower(0);
+        rightF.setPower(-0);
+        leftF.setPower(0);
+    }
 
+    public void turnl(double ugol, double speed) {
+        leftF.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        rightF.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        leftB.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        rightB.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        angles = imu.getAngularOrientation(AxesReference.INTRINSIC, AxesOrder.YXZ, AngleUnit.DEGREES);
+        double degrees = angles.firstAngle;
+        while ((ugol - degrees) >= 4) {
+            angles = imu.getAngularOrientation(AxesReference.INTRINSIC, AxesOrder.YXZ, AngleUnit.DEGREES);
+            degrees = angles.firstAngle;
+            telemetry.addData("degrees", degrees);
+            telemetry.addData("ugol", ugol);
+            telemetry.addData("rasn", (ugol - degrees));
+            telemetry.update();
+
+            leftF.setPower(speed);
+            rightF.setPower(speed);
+            leftB.setPower(speed);
+            rightB.setPower(speed);
+        }
+        leftF.setPower(0);
+        rightF.setPower(0);
+        leftB.setPower(0);
+        rightB.setPower(0);
+        sleep(500);
+        while ((ugol - degrees) <= -0.1) {
+            angles = imu.getAngularOrientation(AxesReference.INTRINSIC, AxesOrder.YXZ, AngleUnit.DEGREES);
+            degrees = angles.firstAngle;
+            telemetry.addData("degrees", degrees);
+            telemetry.addData("ugol", ugol);
+            telemetry.addData("rasn", (ugol - degrees));
+            telemetry.update();
+            leftF.setPower(-speed);
+            rightF.setPower(-speed);
+            leftB.setPower(-speed);
+            rightB.setPower(-speed);
+
+
+        }
+
+        leftB.setPower(0);
+        rightB.setPower(0);
+        leftB.setPower(0);
+        rightB.setPower(0);
+    }
+
+    public void turnr(double ugol, double speed) {
+        leftF.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        rightF.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        leftB.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        rightB.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        angles = imu.getAngularOrientation(AxesReference.INTRINSIC, AxesOrder.YXZ, AngleUnit.DEGREES);
+        double degrees = angles.firstAngle;
+        while ((ugol - degrees) <= -4.0) {
+            angles = imu.getAngularOrientation(AxesReference.INTRINSIC, AxesOrder.YXZ, AngleUnit.DEGREES);
+            degrees = angles.firstAngle;
+            telemetry.addData("degrees", degrees);
+            telemetry.addData("ugol", ugol);
+            telemetry.addData("rasn", Math.abs(ugol - degrees));
+            telemetry.update();
+
+            leftF.setPower(-speed);
+            rightF.setPower(-speed);
+            leftF.setPower(-speed);
+            rightB.setPower(-speed);
+        }
+        leftF.setPower(0);
+        rightF.setPower(0);
+        leftB.setPower(0);
+        rightB.setPower(0);
+        sleep(500);
+        while ((ugol - degrees) >= 0.1) {
+            angles = imu.getAngularOrientation(AxesReference.INTRINSIC, AxesOrder.YXZ, AngleUnit.DEGREES);
+            degrees = angles.firstAngle;
+            telemetry.addData("degrees", degrees);
+            telemetry.addData("ugol", ugol);
+            telemetry.addData("rasn", Math.abs(ugol - degrees));
+            telemetry.update();
+            leftF.setPower(speed);
+            rightF.setPower(speed);
+            leftB.setPower(speed);
+            rightB.setPower(speed);
+
+
+        }
+        leftB.setPower(0);
+        rightB.setPower(0);
+        leftB.setPower(0);
+        rightB.setPower(0);
+
+    }
+
+    public void turnr2(double ugol, double speed) {
+        leftF.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        rightF.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        leftB.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        rightB.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        angles = imu.getAngularOrientation(AxesReference.INTRINSIC, AxesOrder.ZYX, AngleUnit.DEGREES);
+        double degrees = angles.firstAngle;
+        while (Math.abs(ugol - degrees) >= 4) {
+            angles = imu.getAngularOrientation(AxesReference.INTRINSIC, AxesOrder.ZYX, AngleUnit.DEGREES);
+            degrees = angles.firstAngle;
+            telemetry.addData("degrees", degrees);
+            telemetry.addData("ugol", ugol);
+            telemetry.addData("rasn", Math.abs(ugol - degrees));
+            telemetry.update();
+            leftF.setPower(-speed);
+            rightF.setPower(-speed);
+            leftB.setPower(-speed);
+            rightB.setPower(-speed);
+
+
+        }
+        leftF.setPower(0);
+        rightF.setPower(0);
+        leftB.setPower(0);
+        rightB.setPower(0);
+        sleep(500);
+        while ((ugol - degrees) <= 1.0) {
+            angles = imu.getAngularOrientation(AxesReference.INTRINSIC, AxesOrder.ZYX, AngleUnit.DEGREES);
+            degrees = angles.firstAngle;
+            telemetry.addData("degrees", degrees);
+            telemetry.addData("ugol", ugol);
+            telemetry.addData("rasn", (ugol - degrees));
+            telemetry.update();
+
+            leftF.setPower(speed);
+            rightF.setPower(speed);
+            leftF.setPower(speed);
+            rightB.setPower(speed);
+        }
+        leftF.setPower(0);
+        rightF.setPower(0);
+        leftB.setPower(0);
+        rightB.setPower(0);
+        sleep(500);
+
+        leftB.setPower(0);
+        rightB.setPower(0);
+        leftB.setPower(0);
+        rightB.setPower(0);
+
+    }
 
     public void initGyro() {
         BNO055IMU.Parameters parameters = new BNO055IMU.Parameters();
@@ -483,6 +585,17 @@ public class Gyrokall_Custom extends LinearOpMode {
         //
         imu = hardwareMap.get(BNO055IMU.class, "imu");
         imu.initialize(parameters);
+    }
+
+    double getBatteryVoltage() {
+        double result = Double.POSITIVE_INFINITY;
+        for (VoltageSensor sensor : hardwareMap.voltageSensor) {
+            double voltage = sensor.getVoltage();
+            if (voltage > 0) {
+                result = Math.min(result, voltage);
+            }
+        }
+        return result;
     }
 
     public void vobla228() {
@@ -503,28 +616,18 @@ public class Gyrokall_Custom extends LinearOpMode {
         sleep(20);
     }
 
-    double getBatteryVoltage() {
-        double result = Double.POSITIVE_INFINITY;
-        for (VoltageSensor sensor : hardwareMap.voltageSensor) {
-            double voltage = sensor.getVoltage();
-            if (voltage > 0) {
-                result = Math.min(result, voltage);
-            }
-        }
-        return result;
-    }
-
-
-
-
-
     @Override
     public void runOpMode() throws InterruptedException {
 
-        /*int cameraMonitorViewId = hardwareMap.appContext.getResources().getIdentifier("cameraMonitorViewId", "id", hardwareMap.appContext.getPackageName());
+        int cameraMonitorViewId = hardwareMap.appContext.getResources().getIdentifier("cameraMonitorViewId", "id", hardwareMap.appContext.getPackageName());
         phoneCam = OpenCvCameraFactory.getInstance().createWebcam(hardwareMap.get(WebcamName.class, "Webcam 1"), cameraMonitorViewId);
         phoneCam.openCameraDevice();
         phoneCam.setPipeline(new StageSwitchingPipeline());//different stages
+        phoneCam.startStreaming(rows, cols, OpenCvCameraRotation.UPRIGHT);
+        //P.S. if you're using the latest version of easyopencv, you might need to change the next line to the following:
+        /*phoneCam = OpenCvCameraFactory.getInstance().createWebcam(hardwareMap.get(WebcamName.class, "Webcam 1"), cameraMonitorViewId);
+        phoneCam.openCameraDevice();
+        phoneCam.setPipeline(new A_Krasn.StageSwitchingPipeline());//different stages
         phoneCam.startStreaming(rows, cols, OpenCvCameraRotation.UPRIGHT);//display on RC*/
         //width, height
         //width = height in this case, because camera is in portrait mode.
@@ -539,16 +642,92 @@ public class Gyrokall_Custom extends LinearOpMode {
         pod = hardwareMap.dcMotor.get("pod");
         sos = hardwareMap.dcMotor.get("sos");
 
-        initGyro();
+
         waitForStart();
         runtime.reset();
         while (opModeIsActive()) {
-            /*  telemetry.addData("Values", valLeft + "  " + valRight);
+            if (valLeft == 255){
+                telemetry.addData("Values", valLeft + "  " + valRight);
+                telemetry.addData("Height", rows);
+                telemetry.addData("Width", cols);
+                telemetry.update();
+                sleep(100);
+             vpered(200,0.25);
+            vpravo(800, 0.4);
+            stop_all();
+            sleep(100);
+            //TODO: метод выкидывания
+            vikidisch_mid(1);
+            stop_all();
+            sleep(100);
+            vpravo(-1100, 0.4);
+            vpered(-1700, 0.4);
+            pod.setPower(-1);
+            sleep(1000);
+            pod.setPower(0);
+            stop_all();
+            sleep(300009);}
+            else if (valRight == 255){
+                telemetry.addData("Values", valLeft + "  " + valRight);
+                telemetry.addData("Height", rows);
+                telemetry.addData("Width", cols);
+                telemetry.update();
+                sleep(100);
+                vpered(200,0.25);
+                vpravo(800, 0.4);
+                stop_all();
+                sleep(100);
+                //TODO: метод выкидывания
+                vikidisch_verx(-1);
+                stop_all();
+                sleep(100);
+                vpravo(-1100, 0.4);
+                vpered(-1700, 0.4);
+                pod.setPower(-1);
+                sleep(1000);
+                pod.setPower(0);
+                stop_all();
+                sleep(300009);
+            } else {
+                telemetry.addData("Values", valLeft + "  " + valRight);
+                telemetry.addData("Height", rows);
+                telemetry.addData("Width", cols);
+                telemetry.update();
+                sleep(100);
+                vpered(200,0.25);
+                vpravo(800, 0.4);
+                stop_all();
+                sleep(100);
+                //TODO: метод выкидывания
+                vikidisch_mid(1);
+                stop_all();
+                sleep(100);
+                vpravo(-1100, 0.4);
+                vpered(-1700, 0.4);
+                kub_down(-2000);
+                pod.setPower(0);
+                stop_all();
+                sleep(300009);
+            }
+               /*  telemetry.addData("Values", valLeft + "  " + valRight);
             telemetry.addData("Height", rows);
             telemetry.addData("Width", cols);
             telemetry.update();
             sleep(100);*/
-            rotate(90, 0.4);
+            /*vpered(-400, 0.4);
+            vpravo(-1000, 0.4);
+            //TODO: метод выкидывания
+            vikidisch_verx();
+            vpravo(1000, 0.4);
+            vpered(-1500, 0.4);*/
+           /* //TODO: метод засасывания
+            sos.setPower(1);
+            sleep(500);
+            vpered(1500, 0.4);
+            vpravo(-1000, 0.4);
+            vpravo(1000, 0.4);
+            vpered(-1500, 0.4);
+            //Повторить еще раз 4 предидущие строки, если успеваем еще 1 минерал принести
             stop_all();
             sleep(30000);
             /*if(valLeft == 255){
@@ -562,8 +741,12 @@ public class Gyrokall_Custom extends LinearOpMode {
             }*/
 
 
+
+
+
         }
     }
+
     //detection pipeline
     static class StageSwitchingPipeline extends OpenCvPipeline
     {
@@ -618,9 +801,8 @@ public class Gyrokall_Custom extends LinearOpMode {
             Core.extractChannel(yCbCrChan2Mat, yCbCrChan2Mat,2);//takes cb difference and stores
 
             //b&w
-            Imgproc.threshold(yCbCrChan2Mat, thresholdMat, 116, 255, Imgproc.THRESH_BINARY_INV);
+            Imgproc.threshold(yCbCrChan2Mat, thresholdMat, 112, 255, Imgproc.THRESH_BINARY_INV);// thresh 112 было
 
-            //outline/contour
             Imgproc.findContours(thresholdMat, contoursList, new Mat(), Imgproc.RETR_LIST, Imgproc.CHAIN_APPROX_SIMPLE);
             yCbCrChan2Mat.copyTo(all);//copies mat object
             //Imgproc.drawContours(all, contoursList, -1, new Scalar(255, 0, 0), 3, 8);//draws blue contours
@@ -688,5 +870,5 @@ public class Gyrokall_Custom extends LinearOpMode {
             }
         }
 
-    }
-}
+    }}
+

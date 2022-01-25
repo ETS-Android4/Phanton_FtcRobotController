@@ -44,6 +44,7 @@ import org.openftc.easyopencv.OpenCvCameraRotation;
 import org.openftc.easyopencv.OpenCvPipeline;
 import org.openftc.easyopencv.OpenCvWebcam;
 @Autonomous(name= "FF_test", group="Autonomous")
+@Disabled
 //comment out this line before using
 public class FF_test extends LinearOpMode {
 

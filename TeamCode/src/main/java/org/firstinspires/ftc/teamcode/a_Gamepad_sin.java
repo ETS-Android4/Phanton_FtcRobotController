@@ -20,7 +20,8 @@ import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
 //TODO: ПРОЛЕТАРИЙ, ПЕРЕД ТЕМЬ, КАК МЕНЯТЬ ЧТО-ТО В ГАМАПЕДЕ, ПРОВЕРЬ СНАЧАЛА МАТЬ АГАПА!!!
 @TeleOp(name = "Gamepad_s", group = "TeleOP")
 @Disabled
-public class a_Gamepad_sin extends OpMode {
+public class
+a_Gamepad_sin extends OpMode {
     DcMotor leftF, rightF, leftB, rightB, krut, vobla, pod, sos;
     CRServo zaxvat, vikidisch;
     private ElapsedTime runtime = new ElapsedTime(ElapsedTime.Resolution.MILLISECONDS);
