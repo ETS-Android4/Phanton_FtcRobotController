@@ -119,8 +119,12 @@ public class A_Sin_utka_stenka extends Methods {
             } else if (valRight == 255) {
                 nazad(550, 0.2);
                 nazad(110, 0.15);
-                krut.setPower(0.7);
-                sleep(4500);
+                krut.setPower(-0.7);
+                sleep(1200);
+                nazad(35, 0.2);
+                sleep(1200);
+                nazad(35, 0.2);
+                sleep(1500);
                 krut.setPower(0);
                 sleep(1); //T
                 vpered(1250, 0.4);//TODO:
@@ -137,8 +141,12 @@ public class A_Sin_utka_stenka extends Methods {
             } else {
                 nazad(550, 0.2);
                 nazad(110, 0.15);
-                krut.setPower(0.7);
-                sleep(4500);
+                krut.setPower(-0.7);
+                sleep(1200);
+                nazad(35, 0.2);
+                sleep(1200);
+                nazad(35, 0.2);
+                sleep(1500);
                 krut.setPower(0);
                 sleep(1); //T
                 vpered(1150, 0.4);//TODO:

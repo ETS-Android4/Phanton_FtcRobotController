@@ -57,8 +57,8 @@ public class A_Krasn_utka_depo extends Methods{
     private static float offsetX = 0f / 8f;//changing this moves the three rects and the three circles left or right, range : (-2, 2) not inclusive
     private static float offsetY = 0f / 8f;//changing this moves the three rects and circles up or down, range: (-4, 4) not inclusive
 
-    private static float[] leftPos = {2.7f / 8f + offsetX, 5.1f / 8f + offsetY};
-    private static float[] rightPos = {5.4f / 8f + offsetX, 5.1f / 8f + offsetY};
+    private static float[] leftPos = {2.45f / 8f + offsetX, 5.1f / 8f + offsetY};
+    private static float[] rightPos = {5.15f / 8f + offsetX, 5.1f / 8f + offsetY};
 
     private final int rows = 640;
     private final int cols = 480;
@@ -122,13 +122,13 @@ public class A_Krasn_utka_depo extends Methods{
                 vpered(100, 0.4);
                 vpravo(800, 0.25);
                 nazad(450, 0.2);
-                Pis_out(3400);
+                /*Pis_out(3400);
                 pisun.setPower(0);
                 sleep(500);
                 pis.setPower(0);
                 Pis_out(-3100);
                 pisun.setPower(0);
-                pis.setPower (0.1);
+                pis.setPower (0.1);*/
                 sleep(1);
                 kub_down(2300);
                 pod.setPower(0);
@@ -138,7 +138,7 @@ public class A_Krasn_utka_depo extends Methods{
             }
             else if (valRight == 255){
                 vpered(550, 0.4);
-                vpravo(810, 0.25);
+                vpravo(830, 0.25);
                 vikidisch_mid(1);
                 vlevo(850, 0.4);
                 stop_all();
@@ -156,14 +156,14 @@ public class A_Krasn_utka_depo extends Methods{
                 vlevo(100, 0.4);
                 vpravo(700, 0.25);
                 nazad(450, 0.2);
-                Pis_out(3200);
+                /*Pis_out(3200);
                 pisun.setPower(0);
                 sleep(500);
                 pis.setPower(0);
                 Pis_out(-2900);
                 pisun.setPower(0);
                 pis.setPower(0.1);
-                sleep(1);
+                sleep(1);*/
                 kub_down(2300);
                 pod.setPower(0);
                 sleep(30000);
@@ -188,14 +188,14 @@ public class A_Krasn_utka_depo extends Methods{
                 vpered(100, 0.4);
                 vpravo(600, 0.25);
                 nazad(450, 0.2);
-                Pis_out(3000);
+                /*Pis_out(3000);
                 pisun.setPower(0);
                 sleep(500);
                 pis.setPower(0);
                 Pis_out(-2700);
                 pisun.setPower(0);
                 pis.setPower(0.1);
-                sleep(1);
+                sleep(1);*/
                 kub_down(3000);
                 pod.setPower(0);
                 sleep(30000);

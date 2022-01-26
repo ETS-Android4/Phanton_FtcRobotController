@@ -95,7 +95,7 @@ public class A_Krasn_kub2 extends Methods {
             sleep(100);
             if (valLeft == 255) {
                 vpered(400, 0.2);
-                vlevo(660, 0.3);
+                vlevo(745, 0.3);
                 vikidisch_mid(1);
                 vpravo(1000, 0.3);
                 nazad(1050, 0.4);

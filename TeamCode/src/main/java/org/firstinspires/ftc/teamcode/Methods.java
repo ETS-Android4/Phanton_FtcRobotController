@@ -79,6 +79,8 @@ public void Pis_UP (double tick, int kal){
         pod.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         pod.setPower(1);
         while ((opModeIsActive() && (pod.isBusy()))){
+            telemetry.addData("Podiem", pod.getCurrentPosition());
+            telemetry.update();
         }
         pod.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         pod.setPower(0);
@@ -91,6 +93,8 @@ public void Pis_UP (double tick, int kal){
         pod.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         pod.setPower(1);
         while ((opModeIsActive() && (pod.isBusy()))){
+            telemetry.addData("Podiem", pod.getCurrentPosition());
+            telemetry.update();
         }
         pod.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         pod.setPower(0);
@@ -103,6 +107,8 @@ public void Pis_UP (double tick, int kal){
         pod.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         pod.setPower(1);
         while ((opModeIsActive() && (pod.isBusy()))){
+            telemetry.addData("Podiem", pod.getCurrentPosition());
+            telemetry.update();
         }
         pod.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         pod.setPower(0);
