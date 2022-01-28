@@ -75,7 +75,7 @@ public void Pis_UP (double tick, int kal){
     }
     public void kub_verx () {
         pod.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        pod.setTargetPosition(3000); //2100 verx
+        pod.setTargetPosition(2800); //2100 verx
         pod.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         pod.setPower(1);
         while ((opModeIsActive() && (pod.isBusy()))){
