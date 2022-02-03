@@ -53,14 +53,14 @@ public class Methods extends LinearOpMode {
     double tick;
     int kal;
     int x = 0;
-public void Pis_UP (double tick, int kal){
-    while (x <= kal) {
-        double pis2 = pis.getPower();
-     pis.setPower(pis2 + tick*x);
-     sleep(50);
-     x += 1;
+    public void Pis_UP (double tick, int kal){
+        while (x <= kal) {
+            double pis2 = pis.getPower();
+        pis.setPower(pis2 + tick*x);
+        sleep(50);
+        x += 1; }
     }
-    }
+
     public void Pis_out (int position) {
         pisun.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         pisun.setTargetPosition(-position);
@@ -312,6 +312,44 @@ public void Pis_UP (double tick, int kal){
     }*/
     public void nazad(int pos, double speed) {
         vpered(-pos, speed);
+    }
+
+    public void vpered_down(int pos, double speed, int level){
+        leftF.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        leftB.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        rightB.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        rightF.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        leftF.setTargetPosition(pos);
+        rightB.setTargetPosition(-pos);
+        rightF.setTargetPosition(-pos);
+        leftB.setTargetPosition(pos);
+        leftF.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        leftB.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        rightF.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        rightB.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        leftF.setPower(speed);
+        rightB.setPower(speed);
+        rightF.setPower(speed);
+        leftB.setPower(speed);
+
+        pod.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        pod.setTargetPosition(-level);
+        pod.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        pod.setPower(1);
+        while ((opModeIsActive() && (leftF.isBusy()) && (rightF.isBusy()) && (rightB.isBusy()) && (leftB.isBusy()))){
+            telemetry.addData("Path2", "Running at %7d :%7d : %7d :%7d",
+                    leftF.getCurrentPosition(),
+                    rightB.getCurrentPosition(), rightF.getCurrentPosition(), leftB.getCurrentPosition());
+            telemetry.update();
+        }
+        rightB.setPower(0);
+        leftB.setPower(0);
+        rightF.setPower(0);
+        leftF.setPower(0);
+        pod.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        sleep(100);
+        pod.setPower(0);
+        sleep(1);
     }
 
     public void vpered(int pos, double speed) {
