@@ -144,7 +144,7 @@ public class Methods extends LinearOpMode {
         stop_all();
         sleep(100);
         vikidisch.setPower(napr); //-1
-        sleep(2000);
+        sleep(1500);
         vikidisch.setPower(0.05);
         sleep(500);
     }
@@ -153,7 +153,7 @@ public class Methods extends LinearOpMode {
         stop_all();
         sleep(100);
         vikidisch.setPower(napr); //-1
-        sleep(2000);
+        sleep(1500);
         vikidisch.setPower(0.05);
         sleep(500);
     }

@@ -41,9 +41,9 @@ import java.util.List;
  * monitor: 640 x 480
  *YES
  */
-@Autonomous(name= "A_Sin_Kub2", group="Autonomous")
+@Autonomous(name= "A_Sin_Kub2_Speed", group="Autonomous")
 //comment out this line before using
-public class A_Sin_Kub_2 extends Methods {
+public class A_Sin_Kub_2_Speed extends Methods {
     private ElapsedTime runtime = new ElapsedTime();
 
     private static int valLeft = -1;
@@ -98,78 +98,82 @@ public class A_Sin_Kub_2 extends Methods {
                 vpravo(660, 0.3);
                 vikidisch_mid(1);
                 vlevo(1000, 0.3);
-                nazad(950, 0.4);
-                nazad(500, 0.2);
-                kub_down(2000);
+                vpered_down(-950, 0.6, 1300);
+                kub_down(1300);
                 sos.setPower(-1);
-                nazad(50, 0.2);
                 sleep(1500);
                 sos.setPower(1);
                 sleep(1000);
                 sos.setPower(0);
                 sleep(1);
-                vpered(1550, 0.4);
+                vpered(1300, 0.6);
                 vlevo(250,0.4);
                 vpravo(780, 0.3);
                 vikidisch_mid(1);
                 vlevo(1000, 0.4);
-                nazad(1350, 0.4);
-                //vpravo(500, 0.4);
-                kub_down(1900);
+                vpered_down(-1250, 0.6, 1500);
+                kub_down(1500);
+                sos.setPower(-1);
+                nazad(100, 0.3);
+                sleep(1500);
+                sos.setPower(0);
+                sleep(1);
                 pod.setPower(0);
                 stop_all();
                 sleep(30000);
             } else if (valRight == 255) {
-                vpered(400, 0.2);
-                vpravo(745, 0.3);
+                vpered(400, 0.4);
+                vpravo(800, 0.3);
                 vikidisch_mid(1);
                 vlevo(1000, 0.3);
-                nazad(950, 0.4);
-                nazad(500, 0.2);
-                kub_down(2000);
+                vpered_down(-950, 0.6, 1300);
+                kub_down(1300);
                 sos.setPower(-1);
-                nazad(50, 0.2);
                 sleep(1500);
                 sos.setPower(1);
                 sleep(1000);
                 sos.setPower(0);
                 sleep(1);
-                vpered(1550, 0.4);
+                vpered(1300, 0.6);
                 vlevo(250,0.4);
                 vpravo(780, 0.3);
                 vikidisch_mid(1);
                 vlevo(1000, 0.4);
-                nazad(1350, 0.4);
-                //vpravo(500, 0.4);
-                kub_down(1900);
+                vpered_down(-1250, 0.6, 1500);
+                kub_down(1500);
+                sos.setPower(-1);
+                nazad(100, 0.3);
+                sleep(1500);
+                sos.setPower(0);
+                sleep(1);
                 pod.setPower(0);
                 stop_all();
                 sleep(30000);
             } else {
-                vpered(350, 0.3);
-                vpravo(880, 0.3);
-                vikidisch_verx(0.92);
+                vpered(300, 0.3);
+                vpravo(900, 0.3);
+                vikidisch_verx(0.93);
                 vlevo(1000, 0.3);
-                vpered_down(-950, 0.5, 2800);
-                //nazad(950, 0.4);
-                nazad(400, 0.3);
-                //kub_down(2950);
+                vpered_down(-950, 0.6, 1400);
+                kub_down(1400);
                 sos.setPower(-1);
                 sleep(1500);
                 sos.setPower(1);
                 sleep(1000);
                 sos.setPower(0);
                 sleep(1);
-                vpered(1360, 0.4);
+                vpered(1250, 0.6);
                 vlevo(250,0.4);
                 vpravo(780, 0.3);
                 vikidisch_mid(1);
                 vlevo(1000, 0.4);
-                vpered_down(-1150, 0.5, 1950);
-                nazad(50, 0.3);
-                //nazad(1350, 0.4);
-                //vpravo(500, 0.4);
-                //kub_down(1950);
+                vpered_down(-1150, 0.6, 1000);
+                kub_down(1000);
+                sos.setPower(-1);
+                nazad(100, 0.3);
+                sleep(1500);
+                sos.setPower(0);
+                sleep(1);
                 pod.setPower(0);
                 stop_all();
                 sleep(30000);
