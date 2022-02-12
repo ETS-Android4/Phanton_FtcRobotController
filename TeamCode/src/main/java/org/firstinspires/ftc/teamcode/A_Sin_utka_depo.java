@@ -56,8 +56,8 @@ public class A_Sin_utka_depo extends Methods {
     private static float offsetX = 0f / 8f;//changing this moves the three rects and the three circles left or right, range : (-2, 2) not inclusive
     private static float offsetY = 0f / 8f;//changing this moves the three rects and circles up or down, range: (-4, 4) not inclusive
 
-    private static float[] leftPos = {1.4f / 8f + offsetX, 4.8f / 8f + offsetY};
-    private static float[] rightPos = {4.1f / 8f + offsetX, 5f / 8f + offsetY};
+    private static float[] leftPos = {1.5f / 8f + offsetX, 4.8f / 8f + offsetY};
+    private static float[] rightPos = {4.2f / 8f + offsetX, 5f / 8f + offsetY};
 
     private final int rows = 640;
     private final int cols = 480;
@@ -95,16 +95,6 @@ public class A_Sin_utka_depo extends Methods {
             telemetry.addData("Width", cols);
             telemetry.update();
             sleep(100);
-            //vlevo(75, 0.2);
-           /* Pis_out(3000);
-            pisun.setPower(0);
-            sleep(500);
-            pis.setPower(0);
-            Pis_out(-2700);
-            pisun.setPower(0);
-            pis.setPower(0.1);
-            sleep(30000);*/
-
             if (valLeft == 255){
                 vpered(570, 0.4);
                 vpravo(100, 0.25);
@@ -117,25 +107,17 @@ public class A_Sin_utka_depo extends Methods {
                 vlevo(200, 0.4);
                 nazad(1250, 0.3);
                 krut.setPower(0.7);
-                nazad(35, 0.4);
+                nazad(35, 0.2);
                 sleep(1200);
-                nazad(35, 0.4);
+                nazad(35, 0.2);
                 sleep(1200);
-                nazad(35, 0.4);
+                nazad(35, 0.2);
                 sleep(1200);
                 krut.setPower(0);
                 sleep(1);
                 vpered(100, 0.4);
                 vlevo(800, 0.25);
                 nazad(250, 0.2);
-                /*Pis_out(3400);
-                pisun.setPower(0);
-                sleep(500);
-                pis.setPower(0);
-                Pis_out(-3100);
-                pisun.setPower(0);
-                pis.setPower(0.1);
-                sleep(1);*/
                 kub_down(2300);
                 pod.setPower(0);
                 sleep(1);
@@ -154,60 +136,44 @@ public class A_Sin_utka_depo extends Methods {
                 vlevo(150, 0.4);
                 nazad(1300, 0.3);
                 krut.setPower(0.7);
-                nazad(80, 0.4);
+                nazad(80, 0.2);
                 sleep(1200);
-                nazad(80, 0.4);
+                nazad(80, 0.2);
                 sleep(1200);
-                nazad(80, 0.4);
+                nazad(80, 0.2);
                 sleep(1200);
                 krut.setPower(0);
                 sleep(1);
                 vpered(100, 0.4);
                 vlevo(750, 0.25);
                 nazad(550, 0.2);
-                /*Pis_out(3200);
-                pisun.setPower(0);
-                sleep(500);
-                pis.setPower(0);
-                Pis_out(-2900);
-                pisun.setPower(0);
-                pis.setPower(0.1);
-                sleep(1);*/
                 kub_down(2300);
                 pod.setPower(0);
                 sleep(30000);
                 stop_all();
             } else {
-                vpered(470, 0.4);
+                vpered(520, 0.4);
                 vlevo(870, 0.25);
                 vikidisch_verx(-0.87);
                 vpravo(850, 0.4);
                 vpravo(200, 0.25);
                 stop_all();
                 sleep(500);
-                vlevo(100, 0.4);
+                vlevo(150, 0.4);
                 nazad(1150, 0.3);
                 krut.setPower(0.7);
-                nazad(35, 0.2);
+                nazad(80, 0.2);
                 sleep(1200);
-                nazad(35, 0.2);
+                nazad(80, 0.2);
                 sleep(1200);
-                nazad(35, 0.2);
+                nazad(80, 0.2);
                 sleep(1200);
                 krut.setPower(0);
                 sleep(1);
                 vpered(100, 0.4);
-                vlevo(600, 0.25);
+                vlevo(750, 0.3);
                 nazad(450, 0.2);
-                /*Pis_out(3000);
-                pisun.setPower(0);
-                sleep(500);
-                pis.setPower(0);
-                Pis_out(-2700);
-                pisun.setPower(0);
-                pis.setPower(0.1);
-                sleep(1);*/
-                kub_down(3000);
+                kub_down(2800);
                 pod.setPower(0);
                 sleep(30000);
                 stop_all();
