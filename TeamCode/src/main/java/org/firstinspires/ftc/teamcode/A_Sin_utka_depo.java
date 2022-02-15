@@ -96,7 +96,7 @@ public class A_Sin_utka_depo extends Methods {
             telemetry.update();
             sleep(100);
             if (valLeft == 255){
-                vpered(570, 0.4);
+                vpered(520, 0.4);
                 vpravo(100, 0.25);
                 vlevo(700, 0.25);
                 vikidisch_mid(-1);
@@ -104,8 +104,8 @@ public class A_Sin_utka_depo extends Methods {
                 vpravo(150, 0.25);
                 stop_all();
                 sleep(500);
-                vlevo(200, 0.4);
-                nazad(1250, 0.3);
+                vlevo(180, 0.4);
+                nazad(1350, 0.3);
                 krut.setPower(0.7);
                 nazad(35, 0.2);
                 sleep(1200);
@@ -125,7 +125,7 @@ public class A_Sin_utka_depo extends Methods {
                 stop_all();
             }
             else if (valRight == 255){
-                vpered(570, 0.4);
+                vpered(520, 0.4);
                 vpravo(100, 0.25);
                 vlevo(810, 0.25);
                 vikidisch_mid(-1);
@@ -134,7 +134,7 @@ public class A_Sin_utka_depo extends Methods {
                 stop_all();
                 sleep(500);
                 vlevo(150, 0.4);
-                nazad(1300, 0.3);
+                nazad(1350, 0.3);
                 krut.setPower(0.7);
                 nazad(80, 0.2);
                 sleep(1200);
@@ -160,7 +160,7 @@ public class A_Sin_utka_depo extends Methods {
                 stop_all();
                 sleep(500);
                 vlevo(150, 0.4);
-                nazad(1150, 0.3);
+                nazad(1350, 0.3);
                 krut.setPower(0.7);
                 nazad(80, 0.2);
                 sleep(1200);

@@ -106,31 +106,24 @@ public class A_Krasn_utka_depo extends Methods{
 
             if (valLeft == 255){
                 vpered(550, 0.4);
-                vpravo(650, 0.25);
+                vpravo(600, 0.25);
                 vikidisch_mid(1);
                 vlevo(700, 0.4);
                 vlevo(200, 0.25);
                 vpravo(100 ,0.4);
-                nazad(1010, 0.3);
+                nazad(1090, 0.3);
                 krut.setPower(-0.7);
-                nazad(35, 0.25);
+                nazad(50, 0.25);
                 sleep(1200);
-                nazad(35, 0.25);
+                nazad(50, 0.25);
                 sleep(1200);
-                nazad(35, 0.25);
+                nazad(50, 0.25);
                 sleep(1200);
                 krut.setPower(0);
                 sleep(1);
                 vpered(100, 0.4);
                 vpravo(800, 0.25);
                 nazad(450, 0.2);
-                /*Pis_out(3400);
-                pisun.setPower(0);
-                sleep(500);
-                pis.setPower(0);
-                Pis_out(-3100);
-                pisun.setPower(0);
-                pis.setPower (0.1);*/
                 sleep(1);
                 kub_down(2300);
                 pod.setPower(0);
@@ -148,25 +141,17 @@ public class A_Krasn_utka_depo extends Methods{
                 vpravo(100, 0.4);
                 nazad(1100, 0.3);
                 krut.setPower(-0.7);
-                nazad(35, 0.25);
+                nazad(50, 0.25);
                 sleep(1200);
-                nazad(35, 0.25);
+                nazad(50, 0.25);
                 sleep(1200);
-                nazad(35, 0.25);
+                nazad(50, 0.25);
                 sleep(1200);
                 krut.setPower(0);
                 sleep(1);
                 vpered(100, 0.4);
                 vpravo(700, 0.25);
                 nazad(450, 0.2);
-                /*Pis_out(3200);
-                pisun.setPower(0);
-                sleep(500);
-                pis.setPower(0);
-                Pis_out(-2900);
-                pisun.setPower(0);
-                pis.setPower(0.1);
-                sleep(1);*/
                 kub_down(2300);
                 pod.setPower(0);
                 sleep(30000);
@@ -180,11 +165,11 @@ public class A_Krasn_utka_depo extends Methods{
                 stop_all();
                 sleep(500);
                 vpravo(100, 0.4);
-                nazad(1150, 0.3);
+                nazad(1100, 0.3);
                 krut.setPower(-0.7);
-                nazad(35, 0.2);
+                nazad(50, 0.2);
                 sleep(1200);
-                nazad(35, 0.2);
+                nazad(50, 0.2);
                 sleep(1200);
                 nazad(35, 0.2);
                 sleep(1200);
@@ -193,14 +178,6 @@ public class A_Krasn_utka_depo extends Methods{
                 vpered(100, 0.4);
                 vpravo(700, 0.25);
                 nazad(450, 0.2);
-                /*Pis_out(3000);
-                pisun.setPower(0);
-                sleep(500);
-                pis.setPower(0);
-                Pis_out(-2700);
-                pisun.setPower(0);
-                pis.setPower(0.1);
-                sleep(1);*/
                 kub_down(3000);
                 pod.setPower(0);
                 sleep(30000);
