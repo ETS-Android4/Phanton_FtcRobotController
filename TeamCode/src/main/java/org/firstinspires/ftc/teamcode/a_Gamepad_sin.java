@@ -17,7 +17,7 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
 
-//TODO: ПРОЛЕТАРИЙ, ПЕРЕД ТЕМЬ, КАК МЕНЯТЬ ЧТО-ТО В ГАМАПЕДЕ, ПРОВЕРЬ СНАЧАЛА МАТЬ АГАПА!!!
+//TODO: ПРОЛЕТАРИЙ, ПЕРЕДЪ ТЕМЪ, КАК МЕНЯТЪ ЧТО-ТО В ГАМАПЕДЕ, ПРОВЕРЪ СНАЧАЛА МАТЪ АГАПА!!!
 @TeleOp(name = "Gamepad_s", group = "TeleOP")
 @Disabled
 public class

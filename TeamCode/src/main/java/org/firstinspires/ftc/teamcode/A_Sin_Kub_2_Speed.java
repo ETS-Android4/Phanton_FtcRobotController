@@ -94,7 +94,7 @@ public class A_Sin_Kub_2_Speed extends Methods {
             telemetry.update();
             sleep(100);
             if (valLeft == 255) {
-                vpered(400, 0.2);
+                vpered(420, 0.2);
                 vpravo(660, 0.3);
                 vikidisch_mid(1);
                 vlevo(1000, 0.3);
@@ -135,7 +135,7 @@ public class A_Sin_Kub_2_Speed extends Methods {
                 sos.setPower(0);
                 sleep(1);
                 vpered(1300, 0.6);
-                vlevo(250,0.4);
+                vlevo(220,0.4);
                 vpravo(780, 0.3);
                 vikidisch_mid(1);
                 vlevo(1000, 0.4);
@@ -151,7 +151,7 @@ public class A_Sin_Kub_2_Speed extends Methods {
                 sleep(30000);
             } else {
                 vpered(300, 0.3);
-                vpravo(900, 0.3);
+                vpravo(880, 0.3);
                 vikidisch_verx(0.93);
                 vlevo(1000, 0.3);
                 vpered_down(-950, 0.6, 1400);
@@ -161,13 +161,14 @@ public class A_Sin_Kub_2_Speed extends Methods {
                 sos.setPower(1);
                 sleep(1000);
                 sos.setPower(0);
+                vlevo(100, 0.3);
                 sleep(1);
-                vpered(1250, 0.6);
+                vpered(1300, 0.6);
                 vlevo(250,0.4);
                 vpravo(780, 0.3);
                 vikidisch_mid(1);
                 vlevo(1000, 0.4);
-                vpered_down(-1150, 0.6, 1000);
+                vpered_down(-1100, 0.6, 1000);
                 kub_down(1000);
                 sos.setPower(-1);
                 nazad(100, 0.3);

@@ -94,9 +94,9 @@ public class A_Krasn_kub2 extends Methods {
             telemetry.update();
             sleep(100);
             if (valLeft == 255) {
-                vpered(400, 0.2);
+                vpered(450, 0.2);
                 vlevo(745, 0.3);
-                vikidisch_mid(1);
+                vikidisch_mid(-1);
                 vpravo(1000, 0.3);
                 nazad(1050, 0.4);
                 nazad(500, 0.2);
@@ -111,7 +111,7 @@ public class A_Krasn_kub2 extends Methods {
                 vpered(1650, 0.4);
                 vpravo(250,0.4);
                 vlevo(780, 0.3);
-                vikidisch_mid(1);
+                vikidisch_mid(-1);
                 vpravo(1000, 0.4);
                 nazad(1450, 0.4);
                 //vpravo(500, 0.4);
@@ -120,9 +120,9 @@ public class A_Krasn_kub2 extends Methods {
                 stop_all();
                 sleep(30000);
             } else if (valRight == 255) {
-                vpered(400, 0.2);
+                vpered(450, 0.2);
                 vlevo(745, 0.3);
-                vikidisch_mid(1);
+                vikidisch_mid(-1);
                 vpravo(1000, 0.3);
                 nazad(1050, 0.4);
                 nazad(500, 0.2);
@@ -137,7 +137,7 @@ public class A_Krasn_kub2 extends Methods {
                 vpered(1650, 0.4);
                 vpravo(250,0.4);
                 vlevo(780, 0.3);
-                vikidisch_mid(1);
+                vikidisch_mid(-1);
                 vpravo(1000, 0.4);
                 nazad(1450, 0.4);
                 //vpravo(500, 0.4);
@@ -148,7 +148,7 @@ public class A_Krasn_kub2 extends Methods {
             } else {
                 vpered(400, 0.2);
                 vlevo(850, 0.3);
-                vikidisch_verx(0.92);
+                vikidisch_verx(-0.87);
                 vlevo(1000, 0.3);
                 nazad(1050, 0.4);
                 nazad(500, 0.2);
@@ -163,7 +163,7 @@ public class A_Krasn_kub2 extends Methods {
                 vpered(1660, 0.4);
                 vlevo(250,0.4);
                 vpravo(780, 0.3);
-                vikidisch_mid(1);
+                vikidisch_mid( -1);
                 vlevo(1000, 0.4);
                 nazad(1550, 0.4);
                 //vpravo(500, 0.4);

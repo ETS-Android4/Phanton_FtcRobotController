@@ -104,7 +104,7 @@ public class A_Sin_utka_depo extends Methods {
                 vpravo(150, 0.25);
                 stop_all();
                 sleep(500);
-                vlevo(100, 0.4);
+                vlevo(80, 0.4);
                 nazad(1350, 0.3);
                 krut.setPower(0.7);
                 nazad(50, 0.25);
@@ -127,7 +127,7 @@ public class A_Sin_utka_depo extends Methods {
                 stop_all();
             }
             else if (valRight == 255){
-                vpered(480, 0.4);
+                vpered(460, 0.4);
                 vpravo(100, 0.25);
                 vlevo(800, 0.3);
                 vikidisch_mid(-1);
@@ -135,7 +135,7 @@ public class A_Sin_utka_depo extends Methods {
                 vpravo(200, 0.25);
                 stop_all();
                 sleep(500);
-                vlevo(100, 0.4);
+                vlevo(80, 0.4);
                 nazad(1300, 0.3);
                 krut.setPower(0.7);
                 nazad(80, 0.25);
@@ -156,14 +156,14 @@ public class A_Sin_utka_depo extends Methods {
                 sleep(30000);
                 stop_all();
             } else {
-                vpered(520, 0.4);
+                vpered(500, 0.4);
                 vlevo(870, 0.3);
                 vikidisch_verx(-0.87);
                 vpravo(850, 0.4);
                 vpravo(200, 0.25);
                 stop_all();
                 sleep(500);
-                vlevo(100, 0.4);
+                vlevo(80, 0.4);
                 nazad(1300, 0.3);
                 krut.setPower(0.7);
                 nazad(80, 0.25);
