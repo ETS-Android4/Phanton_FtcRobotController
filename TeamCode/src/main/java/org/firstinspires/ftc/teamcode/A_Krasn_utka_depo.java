@@ -106,9 +106,9 @@ public class A_Krasn_utka_depo extends Methods{
 
             if (valLeft == 255){
                 vpered(550, 0.4);
-                vpravo(600, 0.25);
+                vpravo(580, 0.25);
                 vikidisch_mid(1);
-                vlevo(700, 0.4);
+                vlevo(600, 0.4);
                 vlevo(200, 0.25);
                 vpravo(100 ,0.4);
                 nazad(1090, 0.3);
@@ -135,8 +135,8 @@ public class A_Krasn_utka_depo extends Methods{
                 vpered(550, 0.4);
                 vpravo(830, 0.25);
                 vikidisch_mid(1);
-                vlevo(850, 0.4);
-                vlevo(200, 0.2);
+                vlevo(600, 0.4);
+                vlevo(200, 0.25);
                 stop_all();
                 vpravo(100, 0.4);
                 nazad(1100, 0.3);
@@ -160,8 +160,8 @@ public class A_Krasn_utka_depo extends Methods{
                 vpered(450, 0.4);
                 vpravo(870, 0.25);
                 vikidisch_verx(0.92);
-                vlevo(850, 0.4);
-                vlevo(200, 0.2);
+                vlevo(600, 0.4);
+                vlevo(200, 0.25);
                 stop_all();
                 sleep(500);
                 vpravo(100, 0.4);
