@@ -83,8 +83,6 @@ public class A_Krasn_kub_2_Speed extends Methods {
         sos = hardwareMap.dcMotor.get("sos");
         pisun = hardwareMap.dcMotor.get("pis");
         pis = hardwareMap.crservo.get("ps");
-        pis = hardwareMap.crservo.get("ps");
-        pis.setPower(-0.11);
         waitForStart();
         runtime.reset();
         while (opModeIsActive()) {
@@ -167,7 +165,7 @@ public class A_Krasn_kub_2_Speed extends Methods {
                 stop_all();
                 sleep(30000);
             } else {
-                vpered(600, 0.2);
+                vpered(580, 0.2);
                 vlevo(830, 0.3);
                 vpravo(50, 0.2);
                 vikidisch_verx(-0.95);

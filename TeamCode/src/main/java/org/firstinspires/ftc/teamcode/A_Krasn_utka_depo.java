@@ -85,7 +85,6 @@ public class A_Krasn_utka_depo extends Methods{
         sos = hardwareMap.dcMotor.get("sos");
         pisun = hardwareMap.dcMotor.get("pis");
         pis = hardwareMap.crservo.get("ps");
-        pis.setPower(-0.11);
         waitForStart();
         runtime.reset();
         while (opModeIsActive()) {
@@ -105,7 +104,7 @@ public class A_Krasn_utka_depo extends Methods{
             sleep(30000);*/
 
             if (valLeft == 255){
-                sleep(8000);
+                //sleep(8000);
                 vpered(550, 0.4);
                 vpravo(590, 0.25);
                 vikidisch_mid(1);
@@ -133,7 +132,7 @@ public class A_Krasn_utka_depo extends Methods{
                 stop_all();
             }
             else if (valRight == 255){
-                sleep(8000);
+                //sleep(8000);
                 vpered(550, 0.4);
                 vpravo(830, 0.25);
                 vikidisch_mid(1);
@@ -159,7 +158,7 @@ public class A_Krasn_utka_depo extends Methods{
                 sleep(30000);
                 stop_all();
             } else {
-                sleep(8000);
+                //sleep(8000);
                 vpered(450, 0.4);
                 vpravo(870, 0.25);
                 vikidisch_verx(0.92);

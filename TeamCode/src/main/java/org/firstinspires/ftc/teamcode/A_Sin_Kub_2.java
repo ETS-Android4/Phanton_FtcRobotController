@@ -84,7 +84,6 @@ public class A_Sin_Kub_2 extends Methods {
         pisun = hardwareMap.dcMotor.get("pis");
         pis = hardwareMap.crservo.get("ps");
         pis = hardwareMap.crservo.get("ps");
-        pis.setPower(-0.11);
         waitForStart();
         runtime.reset();
         while (opModeIsActive()) {
