@@ -95,16 +95,17 @@ public class A_Sin_utka_depo extends Methods {
             telemetry.addData("Width", cols);
             telemetry.update();
             sleep(100);
+            sleep(5000);
             if (valLeft == 255){
-                vpered(570, 0.4);
+                vpered(560, 0.4);
                 vpravo(100, 0.25);
-                vlevo(700, 0.3);
+                vlevo(680, 0.3);
                 vikidisch_mid(-1);
                 vpravo(800, 0.4);
                 vpravo(150, 0.25);
                 stop_all();
                 sleep(500);
-                vlevo(80, 0.4);
+                vlevo(140, 0.6);
                 nazad(1350, 0.3);
                 krut.setPower(0.7);
                 nazad(50, 0.25);
@@ -129,13 +130,13 @@ public class A_Sin_utka_depo extends Methods {
             else if (valRight == 255){
                 vpered(460, 0.4);
                 vpravo(100, 0.25);
-                vlevo(800, 0.3);
+                vlevo(770, 0.3);
                 vikidisch_mid(-1);
                 vpravo(850, 0.4);
                 vpravo(200, 0.25);
                 stop_all();
                 sleep(500);
-                vlevo(80, 0.4);
+                vlevo(150, 0.6);
                 nazad(1300, 0.3);
                 krut.setPower(0.7);
                 nazad(80, 0.25);
@@ -163,7 +164,7 @@ public class A_Sin_utka_depo extends Methods {
                 vpravo(200, 0.25);
                 stop_all();
                 sleep(500);
-                vlevo(80, 0.4);
+                vlevo(150, 0.6);
                 nazad(1300, 0.3);
                 krut.setPower(0.7);
                 nazad(80, 0.25);

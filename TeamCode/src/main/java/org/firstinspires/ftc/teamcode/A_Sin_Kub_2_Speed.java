@@ -106,9 +106,9 @@ public class A_Sin_Kub_2_Speed extends Methods {
                 sleep(1000);
                 sos.setPower(0);
                 sleep(1);
-                vpered(1300, 0.6);
+                vpered(1280, 0.6);
                 vlevo(250,0.4);
-                vpravo(780, 0.3);
+                vpravo(800, 0.3);
                 vikidisch_mid(1);
                 vlevo(1000, 0.4);
                 vpered_down(-1250, 0.6, 1500);
@@ -123,7 +123,7 @@ public class A_Sin_Kub_2_Speed extends Methods {
                 sleep(30000);
             } else if (valRight == 255) {
                 vpered(400, 0.4);
-                vpravo(800, 0.3);
+                vpravo(780, 0.3);
                 vikidisch_mid(1);
                 vlevo(1000, 0.3);
                 vpered_down(-950, 0.6, 1300);
@@ -150,8 +150,8 @@ public class A_Sin_Kub_2_Speed extends Methods {
                 stop_all();
                 sleep(30000);
             } else {
-                vpered(300, 0.3);
-                vpravo(880, 0.3);
+                vpered(320, 0.3);
+                vpravo(1100, 0.3);
                 vikidisch_verx(0.93);
                 vlevo(1000, 0.3);
                 vpered_down(-950, 0.6, 1400);
@@ -163,7 +163,7 @@ public class A_Sin_Kub_2_Speed extends Methods {
                 sos.setPower(0);
                 vlevo(100, 0.3);
                 sleep(1);
-                vpered(1300, 0.6);
+                vpered(1350, 0.6);
                 vlevo(250,0.4);
                 vpravo(780, 0.3);
                 vikidisch_mid(1);

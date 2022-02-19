@@ -95,7 +95,7 @@ public class A_Krasn_kub_2_Speed extends Methods {
             sleep(100);
             if (valLeft == 255) {
                 vpered(550, 0.2);
-                vlevo(670, 0.3);
+                vlevo(660, 0.3);
                 vikidisch_mid(-1);
                 vpravo(700, 0.3);
                 vpravo(50, 0.2);
@@ -113,7 +113,7 @@ public class A_Krasn_kub_2_Speed extends Methods {
                 sleep(1);
                 vpered(1450, 0.6);
                 vpravo(250,0.3);
-                vlevo(780, 0.3);
+                vlevo(760, 0.3);
                 vikidisch_mid(-1);
                 vpravo(850, 0.3);
                 vpered_down(-400, 0.6, 900);

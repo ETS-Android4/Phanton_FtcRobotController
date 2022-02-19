@@ -105,19 +105,20 @@ public class A_Krasn_utka_depo extends Methods{
             sleep(30000);*/
 
             if (valLeft == 255){
+                sleep(8000);
                 vpered(550, 0.4);
-                vpravo(580, 0.25);
+                vpravo(590, 0.25);
                 vikidisch_mid(1);
                 vlevo(600, 0.4);
                 vlevo(200, 0.25);
                 vpravo(100 ,0.4);
-                nazad(1090, 0.3);
+                nazad(1110, 0.3);
                 krut.setPower(-0.7);
-                nazad(50, 0.25);
+                nazad(80, 0.25);
                 sleep(1200);
-                nazad(50, 0.25);
+                nazad(80, 0.25);
                 sleep(1200);
-                nazad(50, 0.25);
+                nazad(80, 0.25);
                 sleep(1200);
                 krut.setPower(0);
                 sleep(1);
@@ -132,20 +133,21 @@ public class A_Krasn_utka_depo extends Methods{
                 stop_all();
             }
             else if (valRight == 255){
+                sleep(8000);
                 vpered(550, 0.4);
                 vpravo(830, 0.25);
                 vikidisch_mid(1);
-                vlevo(600, 0.4);
+                vlevo(700, 0.4);
                 vlevo(200, 0.25);
                 stop_all();
                 vpravo(100, 0.4);
                 nazad(1100, 0.3);
                 krut.setPower(-0.7);
-                nazad(50, 0.25);
+                nazad(80, 0.3);
                 sleep(1200);
-                nazad(50, 0.25);
+                nazad(80, 0.3);
                 sleep(1200);
-                nazad(50, 0.25);
+                nazad(80, 0.3);
                 sleep(1200);
                 krut.setPower(0);
                 sleep(1);
@@ -157,21 +159,22 @@ public class A_Krasn_utka_depo extends Methods{
                 sleep(30000);
                 stop_all();
             } else {
+                sleep(8000);
                 vpered(450, 0.4);
                 vpravo(870, 0.25);
                 vikidisch_verx(0.92);
-                vlevo(600, 0.4);
+                vlevo(800, 0.4);
                 vlevo(200, 0.25);
                 stop_all();
                 sleep(500);
                 vpravo(100, 0.4);
                 nazad(1100, 0.3);
                 krut.setPower(-0.7);
-                nazad(50, 0.2);
+                nazad(80, 0.2);
                 sleep(1200);
-                nazad(50, 0.2);
+                nazad(80, 0.2);
                 sleep(1200);
-                nazad(35, 0.2);
+                nazad(80, 0.2);
                 sleep(1200);
                 krut.setPower(0);
                 sleep(1);
