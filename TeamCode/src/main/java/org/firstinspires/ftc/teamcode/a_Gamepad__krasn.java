@@ -13,6 +13,7 @@ import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.hardware.modernrobotics.ModernRoboticsI2cRangeSensor;
 import com.qualcomm.robotcore.util.ElapsedTime;
+import org.firstinspires.ftc.robotcore.external.Telemetry;
 
 import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
 
@@ -108,12 +109,17 @@ public class a_Gamepad__krasn extends OpMode {
         if (gamepad1.a){
             x = pis.getPower() - 0.0005;
             pis.setPower(x);
+            telemetry.addData("Pis", "", pis.getPower());
+            telemetry.update();
         } else if (gamepad1.y) {
             x = pis.getPower() + 0.0005;
-            pis.setPower(x);
+            pis.setPower(x); telemetry.addData("Pis", "", pis.getPower());
+            telemetry.update();
         } else{
             x = pis.getPower();
             pis.setPower(x);
+            telemetry.addData("Pis", "", pis.getPower());
+            telemetry.update();
         }
         if (gamepad2.dpad_down){
             pod.setPower(-1);
@@ -150,18 +156,12 @@ public class a_Gamepad__krasn extends OpMode {
         else{
             krut.setPower(0);
         }
-        /*if (pwrTrigger5 != 0) {
-            vobla.setPower(0.5 * pwrTrigger5);
-        } else if (pwrTrigger6 != 0) {
-            vobla.setPower(-0.5 * pwrTrigger6);
-        }  else {
-            vobla.setPower(0);
-        }*/
         if (gamepad2.right_bumper) {
             zaxvat.setPower(-0.3);
         } else {
             zaxvat.setPower(0.53);
         }
+
 
        /* if (gamepad2.dpad_left) {
             krut.setPower(0.9);

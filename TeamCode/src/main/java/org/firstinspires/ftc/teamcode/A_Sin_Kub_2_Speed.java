@@ -93,12 +93,12 @@ public class A_Sin_Kub_2_Speed extends Methods {
             telemetry.update();
             sleep(100);
             if (valLeft == 255) {
-                vpered(420, 0.2);
-                vpravo(660, 0.3);
+                vpered(430, 0.2);
+                vpravo(690, 0.3);
                 vikidisch_mid(1);
                 vlevo(1000, 0.3);
-                vpered_down(-950, 0.6, 1300);
-                kub_down(1300);
+                vpered_down(-950, 0.6, 1000);
+                kub_down(1000);
                 sos.setPower(-1);
                 sleep(1500);
                 sos.setPower(1);
@@ -110,7 +110,7 @@ public class A_Sin_Kub_2_Speed extends Methods {
                 vpravo(800, 0.3);
                 vikidisch_mid(1);
                 vlevo(1000, 0.4);
-                vpered_down(-1250, 0.6, 1500);
+                vpered_down(-1250, 0.6, 1300);
                 kub_down(1500);
                 sos.setPower(-1);
                 nazad(100, 0.3);
@@ -125,20 +125,20 @@ public class A_Sin_Kub_2_Speed extends Methods {
                 vpravo(780, 0.3);
                 vikidisch_mid(1);
                 vlevo(1000, 0.3);
-                vpered_down(-950, 0.6, 1300);
-                kub_down(1300);
+                vpered_down(-900, 0.6, 1000);
+                kub_down(1000);
                 sos.setPower(-1);
                 sleep(1500);
                 sos.setPower(1);
                 sleep(1000);
                 sos.setPower(0);
                 sleep(1);
-                vpered(1300, 0.6);
+                vpered(1400, 0.6);
                 vlevo(220,0.4);
                 vpravo(780, 0.3);
                 vikidisch_mid(1);
                 vlevo(1000, 0.4);
-                vpered_down(-1250, 0.6, 1500);
+                vpered_down(-1150, 0.6, 1500);
                 kub_down(1500);
                 sos.setPower(-1);
                 nazad(100, 0.3);
@@ -150,11 +150,11 @@ public class A_Sin_Kub_2_Speed extends Methods {
                 sleep(30000);
             } else {
                 vpered(320, 0.3);
-                vpravo(1100, 0.3);
+                vpravo(950, 0.3);
                 vikidisch_verx(0.93);
                 vlevo(1000, 0.3);
-                vpered_down(-950, 0.6, 1400);
-                kub_down(1400);
+                vpered_down(-950, 0.6, 1000);
+                kub_down(1000);
                 sos.setPower(-1);
                 sleep(1500);
                 sos.setPower(1);
