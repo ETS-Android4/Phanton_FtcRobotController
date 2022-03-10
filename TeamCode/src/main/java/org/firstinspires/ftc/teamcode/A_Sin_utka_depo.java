@@ -104,7 +104,7 @@ public class A_Sin_utka_depo extends Methods {
                 stop_all();
                 sleep(500);
                 vlevo(100, 0.6);
-                nazad(1350, 0.3);
+                vpered_down(-1350, 0.3, 2300);
                 krut.setPower(0.7);
                 nazad(50, 0.25);
                 sleep(800);
@@ -119,14 +119,14 @@ public class A_Sin_utka_depo extends Methods {
                 razvarot(100, 0.3);
                 vlevo(800, 0.25);
                 nazad(250, 0.2);
-                kub_down(2300);
+                kub_down(1000);
                 pod.setPower(0);
                 sleep(1);
                 sleep(30000);
                 stop_all();
             }
             else if (valRight == 255){
-                vpered(460, 0.4);
+                vpered(480, 0.4);
                 vpravo(100, 0.25);
                 vlevo(770, 0.3);
                 vikidisch_mid(-1);
@@ -134,8 +134,8 @@ public class A_Sin_utka_depo extends Methods {
                 vpravo(200, 0.25);
                 stop_all();
                 sleep(500);
-                vlevo(100, 0.6);
-                nazad(1250, 0.3);
+                vlevo(150, 0.6);
+                vpered_down(-1150, 0.3, 2300);
                 krut.setPower(0.7);
                 nazad(80, 0.25);
                 sleep(800);
@@ -150,12 +150,12 @@ public class A_Sin_utka_depo extends Methods {
                 razvarot(100, 0.3);
                 vlevo(800, 0.25);
                 nazad(250, 0.2);
-                kub_down(2300);
+                kub_down(1000);
                 pod.setPower(0);
                 sleep(30000);
                 stop_all();
             } else {
-                vpered(500, 0.4);
+                vpered(460, 0.4);
                 vlevo(870, 0.3);
                 vikidisch_verx(-0.87);
                 vpravo(850, 0.4);
@@ -163,7 +163,7 @@ public class A_Sin_utka_depo extends Methods {
                 stop_all();
                 sleep(500);
                 vlevo(100, 0.6);
-                nazad(1300, 0.3);
+                vpered_down(-1150, 0.3, 2800);
                 krut.setPower(0.7);
                 nazad(80, 0.25);
                 sleep(800);
@@ -177,7 +177,7 @@ public class A_Sin_utka_depo extends Methods {
                 razvarot(100, 0.3);
                 vlevo(850, 0.3);
                 nazad(250, 0.2);
-                kub_down(2800);
+                kub_down(1000);
                 pod.setPower(0);
                 sleep(30000);
                 stop_all();
