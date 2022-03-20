@@ -93,7 +93,7 @@ public class A_Krasn_kub_2_Speed extends Methods {
             sleep(100);
             if (valLeft == 255) {
                 vpered(550, 0.2);
-                vlevo(660, 0.3);
+                vlevo(640, 0.3);
                 vikidisch_mid(-1);
                 vpravo(700, 0.3);
                 vpravo(50, 0.2);
@@ -101,7 +101,7 @@ public class A_Krasn_kub_2_Speed extends Methods {
                 sleep(500);
                 vpravo(100, 0.3);
                 vpered_down(-500, 0.6, 900);
-                kub_down(1000);
+                kub_down(700);
                 sos.setPower(-1);
                 sleep(1800);
                 sos.setPower(1);
@@ -111,7 +111,7 @@ public class A_Krasn_kub_2_Speed extends Methods {
                 sleep(1);
                 vpered(1450, 0.6);
                 vpravo(250,0.3);
-                vlevo(760, 0.3);
+                vlevo(740, 0.3);
                 vikidisch_mid(-1);
                 vpravo(850, 0.3);
                 vpered_down(-400, 0.6, 900);
@@ -130,15 +130,15 @@ public class A_Krasn_kub_2_Speed extends Methods {
                 sleep(30000);
             } else if (valRight == 255) {
                 vpered(600, 0.2);
-                vlevo(800, 0.3);
+                vlevo(790, 0.3);
                 vikidisch_mid(-1);
                 vpravo(750, 0.3);
                 vpravo(50, 0.2);
                 vpered_down(-400, 0.6, 900);
                 sleep(500);
                 vpravo(100, 0.3);
-                vpered_down(-600, 0.6, 900);
-                kub_down(1100);
+                vpered_down(-400, 0.6, 900);
+                kub_down(700);
                 sos.setPower(-1);
                 sleep(1800);
                 sos.setPower(1);
@@ -191,7 +191,7 @@ public class A_Krasn_kub_2_Speed extends Methods {
                 vpravo(100, 0.3);
                 vpered_down(-600, 0.6, 500);
                 //vpravo(500, 0.4);
-                kub_down(1000);
+                kub_down(700);
                 sos.setPower(-1);
                 vpered(-50, 0.25);
                 sleep(1500);

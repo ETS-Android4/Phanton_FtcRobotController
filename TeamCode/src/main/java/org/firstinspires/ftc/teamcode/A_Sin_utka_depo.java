@@ -95,7 +95,7 @@ public class A_Sin_utka_depo extends Methods {
             telemetry.update();
             sleep(100);
             if (valLeft == 255){
-                vpered(560, 0.4);
+                vpered(540, 0.4);
                 vpravo(100, 0.25);
                 vlevo(680, 0.3);
                 vikidisch_mid(-1);
