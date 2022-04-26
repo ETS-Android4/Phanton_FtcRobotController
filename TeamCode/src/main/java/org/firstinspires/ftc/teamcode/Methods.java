@@ -135,7 +135,7 @@ public class Methods extends LinearOpMode {
         stop_all();
         sleep(100);
         vikidisch.setPower(napr);
-        sleep(2500);
+        sleep(3500);
         vikidisch.setPower(0.05);
         sleep(500);
     }
@@ -350,6 +350,92 @@ public class Methods extends LinearOpMode {
         sleep(100);
         pod.setPower(0);
         sleep(1);
+    }
+
+    public void plawno_vpered(int pos, double speed, double nach_speed){
+
+        leftF.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        leftB.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        rightB.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        rightF.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        leftF.setTargetPosition(pos);
+        rightB.setTargetPosition(-pos);
+        rightF.setTargetPosition(-pos);
+        leftB.setTargetPosition(pos);
+        leftF.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        leftB.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        rightF.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        rightB.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        leftF.setPower(nach_speed);
+        rightB.setPower(nach_speed);
+        rightF.setPower(nach_speed);
+        leftB.setPower(nach_speed);
+        while (opModeIsActive() && (leftF.isBusy()) && (rightF.isBusy()) && (rightB.isBusy()) && (leftB.isBusy()) && (nach_speed < speed)) {
+
+            nach_speed = nach_speed + 0.05;
+            leftF.setPower(nach_speed);
+            rightB.setPower(nach_speed);
+            rightF.setPower(nach_speed);
+            leftB.setPower(nach_speed);
+            sleep(100);
+
+
+            telemetry.addData("Path2", "Running at %7d :%7d : %7d :%7d",
+                    leftF.getCurrentPosition(),
+                    rightB.getCurrentPosition(), rightF.getCurrentPosition(), leftB.getCurrentPosition());
+            telemetry.addData("Peremennaya", nach_speed);
+            telemetry.addData("Motori", leftB.getPower());
+            telemetry.update();
+
+        }
+        rightB.setPower(0);
+        leftB.setPower(0);
+        rightF.setPower(0);
+        leftF.setPower(0);
+        sleep(100);
+
+    }
+
+    public void zamedl(int pos, double curient_speed){
+        leftF.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        leftB.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        rightB.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        rightF.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        leftF.setTargetPosition(pos);
+        rightB.setTargetPosition(-pos);
+        rightF.setTargetPosition(-pos);
+        leftB.setTargetPosition(pos);
+        leftF.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        leftB.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        rightF.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        rightB.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        leftF.setPower(curient_speed);
+        rightB.setPower(curient_speed);
+        rightF.setPower(curient_speed);
+        leftB.setPower(curient_speed);
+        while (opModeIsActive() && (leftF.isBusy()) && (rightF.isBusy()) && (rightB.isBusy()) && (leftB.isBusy()) && (curient_speed > 0)) {
+
+            curient_speed = curient_speed - 0.1;
+            leftF.setPower(curient_speed);
+            rightB.setPower(curient_speed);
+            rightF.setPower(curient_speed);
+            leftB.setPower(curient_speed);
+            sleep(100);
+
+
+            telemetry.addData("Path2", "Running at %7d :%7d : %7d :%7d",
+                    leftF.getCurrentPosition(),
+                    rightB.getCurrentPosition(), rightF.getCurrentPosition(), leftB.getCurrentPosition());
+            telemetry.addData("Peremennaya", curient_speed);
+            telemetry.addData("Motori", leftB.getPower());
+            telemetry.update();
+
+        }
+        rightB.setPower(0);
+        leftB.setPower(0);
+        rightF.setPower(0);
+        leftF.setPower(0);
+        sleep(100);
     }
 
     public void vpered(int pos, double speed) {

@@ -13,7 +13,7 @@ public class PIDController
     private double m_maximumInput = 0.0;	// maximum input - limit setpoint to this
     private double m_minimumInput = 0.0;	// minimum input - limit setpoint to this
     private boolean m_continuous = false;	// do the endpoints wrap around? eg. Absolute encoder
-    private boolean m_enabled = false;      // is the pid controller enabled
+    private boolean m_enabled = true;      // is the pid controller enabled
     private double m_prevError = 0.0;       // the prior sensor input (used to compute velocity)
     private double m_totalError = 0.0;      // the sum of the errors for use in the integral calc
     private double m_tolerance = 1.0;      // the percentage error that is considered on target

@@ -41,9 +41,9 @@ import java.util.List;
  * monitor: 640 x 480
  *YES
  */
-@Autonomous(name= "A_Krasn_Kub2_Speed", group="Autonomous")
+@Autonomous(name= "plawn_test", group="Autonomous")
 //comment out this line before using
-public class A_Krasn_kub_2_Speed extends Methods {
+public class plawn_test extends Methods {
     private ElapsedTime runtime = new ElapsedTime();
 
     private static int valLeft = -1;
@@ -56,22 +56,23 @@ public class A_Krasn_kub_2_Speed extends Methods {
     private static float offsetX = 0f / 8f;//changing this moves the three rects and the three circles left or right, range : (-2, 2) not inclusive
     private static float offsetY = 0f / 8f;//changing this moves the three rects and circles up or down, range: (-4, 4) not inclusive
 
-    private static float[] leftPos = {1.8f / 8f + offsetX, 5.1f / 8f + offsetY};
-    private static float[] rightPos = {4.3f / 8f + offsetX, 5.1f / 8f + offsetY};
+    private static float[] leftPos = {1.7f / 8f + offsetX, 4.8f / 8f + offsetY};
+    private static float[] rightPos = {4.4f / 8f + offsetX, 5f / 8f + offsetY};
 
     private final int rows = 640;
     private final int cols = 480;
 
+
+
     @Override
     public void runOpMode() throws InterruptedException {
+
         int cameraMonitorViewId = hardwareMap.appContext.getResources().getIdentifier("cameraMonitorViewId", "id", hardwareMap.appContext.getPackageName());
         phoneCam = OpenCvCameraFactory.getInstance().createWebcam(hardwareMap.get(WebcamName.class, "Webcam 1"), cameraMonitorViewId);
         phoneCam.openCameraDevice();
         phoneCam.setPipeline(new StageSwitchingPipeline());//different stages
         phoneCam.startStreaming(rows, cols, OpenCvCameraRotation.UPRIGHT);//display on RC*/
-        //width, height
         //width = height in this case, because camera is in portrait mode.
-
         leftF = hardwareMap.dcMotor.get("lf");
         leftB = hardwareMap.dcMotor.get("lr");
         rightF = hardwareMap.dcMotor.get("rf");
@@ -83,6 +84,8 @@ public class A_Krasn_kub_2_Speed extends Methods {
         sos = hardwareMap.dcMotor.get("sos");
         pisun = hardwareMap.dcMotor.get("pis");
         pis = hardwareMap.crservo.get("ps");
+
+        initGyro();
         waitForStart();
         runtime.reset();
         while (opModeIsActive()) {
@@ -90,120 +93,14 @@ public class A_Krasn_kub_2_Speed extends Methods {
             telemetry.addData("Height", rows);
             telemetry.addData("Width", cols);
             telemetry.update();
+
             sleep(100);
-            if (valLeft == 255) {
-                vpered(550, 0.2);
-                vlevo(620, 0.3);
-                vikidisch_mid(-1);
-                vpravo(700, 0.3);
-                vpravo(50, 0.2);
-                vpered_down(-400, 0.6, 900);
-                sleep(500);
-                vpravo(100, 0.3);
-                vpered_down(-500, 0.6, 900);
-                kub_down(700);
-                sos.setPower(-1);
-                sleep(1800);
-                sos.setPower(1);
-                sleep(1000);
-                sos.setPower(0);
-                vpravo(200,0.3);
-                sleep(1);
-                vpered(1450, 0.6);
-                vpravo(250,0.3);
-                vlevo(740, 0.3);
-                vikidisch_mid(-1);
-                vpravo(850, 0.3);
-                vpered_down(-400, 0.6, 900);
-                sleep(500);
-                vpravo(100, 0.3);
-                vpered_down(-600, 0.6, 900);
-                kub_down(1000);
-                sos.setPower(-1);
-                nazad(50, 0.25);
-                sleep(1500);
-                sos.setPower(1);
-                sleep(1000);
-                sos.setPower(0);
-                pod.setPower(0);
-                stop_all();
-                sleep(30000);
-            } else if (valRight == 255) {
-                vpered(600, 0.2);
-                vlevo(790, 0.3);
-                vikidisch_mid(-1);
-                vpravo(750, 0.3);
-                vpravo(50, 0.2);
-                vpered_down(-400, 0.6, 900);
-                sleep(500);
-                vpravo(100, 0.3);
-                vpered_down(-400, 0.6, 900);
-                kub_down(700);
-                sos.setPower(-1);
-                sleep(1800);
-                sos.setPower(1);
-                sleep(1000);
-                sos.setPower(0);
-                sleep(1);
-                vpravo(200,0.4);
-                vpered(1550, 0.6);
-                vpravo(250,0.3);
-                vlevo(780, 0.3);
-                vikidisch_mid(-1);
-                vpravo(850, 0.3);
-                vpered_down(-400, 0.6, 900);
-                sleep(500);
-                vpravo(100, 0.3);
-                vpered_down(-600, 0.6, 900);
-                kub_down(1000);
-                sos.setPower(-1);
-                sleep(1500);
-                sos.setPower(1);
-                sleep(1000);
-                sos.setPower(0);
-                pod.setPower(0);
-                stop_all();
-                sleep(30000);
-            } else {
-                vpered(580, 0.2);
-                vlevo(830, 0.3);
-                vpravo(50, 0.2);
-                vikidisch_verx(-0.95);
-                vpravo(1000, 0.3);
-                vpered_down(-400, 0.6, 500);
-                sleep(500);
-                vpravo(100, 0.3);
-                vpered_down(-600, 0.6, 500);
-                kub_down(1550);
-                sos.setPower(-1);
-                sleep(1800);
-                sos.setPower(1);
-                sleep(1000);
-                sos.setPower(0);
-                vpravo(200,0.3);
-                sleep(1);
-                vpered(1550, 0.6);
-                vlevo(800,0.4);
-                vikidisch_mid(-1);
-                vpravo(1000, 0.4);
-                vpered_down(-400, 0.6, 500);
-                sleep(500);
-                vpravo(100, 0.3);
-                vpered_down(-600, 0.6, 500);
-                //vpravo(500, 0.4);
-                kub_down(700);
-                sos.setPower(-1);
-                vpered(-50, 0.25);
-                sleep(1500);
-                sos.setPower(1);
-                sleep(1000);
-                sos.setPower(0);
-                pod.setPower(0);
-                stop_all();
-                sleep(30000);
-            }
-        }
-    }
+            plawno_vpered(1800, 0.8, 0.1);
+            zamedl(200, 0.8);
+            stop_all();
+            sleep(30000);
+
+        } }
     static class StageSwitchingPipeline extends OpenCvPipeline {
         Mat yCbCrChan2Mat = new Mat();
         Mat thresholdMat = new Mat();
@@ -315,6 +212,15 @@ public class A_Krasn_kub_2_Speed extends Methods {
                     return input;
                 }
             }
+            /*if(valLeft == 255){
+                //Траектория 1
+            }
+            else if (valRight == 255){
+                //Tраектория 2
+            }
+            else {
+                //Траектория 3
+            }*/
         }
     }
 }

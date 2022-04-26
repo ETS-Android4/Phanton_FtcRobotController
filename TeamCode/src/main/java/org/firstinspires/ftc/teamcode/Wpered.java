@@ -8,6 +8,7 @@ import org.firstinspires.ftc.robotcore.external.navigation.Orientation;
 import com.qualcomm.hardware.bosch.BNO055IMU;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.configuration.typecontainers.MotorConfigurationType;
 import com.qualcomm.robotcore.util.ElapsedTime;
@@ -48,7 +49,7 @@ import java.util.List;
 @Autonomous(name= "Wpered_PIDi!!!'", group="Autonomous")
 //comment out this line before using
 public class Wpered extends LinearOpMode  {
-    DcMotorEx leftF, rightF, leftB, rightB, krut, vobla;
+    DcMotorEx leftF, rightF, leftB, rightB;
     CRServo zaxvat;
 
     Orientation angles;
@@ -512,23 +513,7 @@ public class Wpered extends LinearOpMode  {
         imu.initialize(parameters);
     }
 
-    public void vobla228() {
-        vobla.setPower(-0.6);
-        sleep(500);
-        vobla.setPower(0.1);
-        sleep(200);
-        vobla.setPower(0);
-        sleep(300);
-        zaxvat.setPower(-0.3);
-        vobla.setPower(0);
-        sleep(400);
-        vobla.setPower(0.6);
-        sleep(250);
-        vobla.setPower(0);
-        sleep(300);
-        zaxvat.setPower(0.53);
-        sleep(20);
-    }
+
 
     double getBatteryVoltage() {
         double result = Double.POSITIVE_INFINITY;
@@ -550,7 +535,7 @@ public class Wpered extends LinearOpMode  {
  * rightRear
  */
 /* SETUP TO FETCH IMU FOR YOU (BUT DEPENDS ON CONVENTIONAL IMU NAME:)
- * imu
+
  */
 
 
@@ -565,7 +550,7 @@ public class Wpered extends LinearOpMode  {
     private double repetitions = 0;
 
     // get FIRST pid coefficients to hold pid generated coefficients
-    private static PIDCoefficients testPID = new PIDCoefficients(0,0,0);
+    private static PIDCoefficients testPID = new PIDCoefficients(0.2,0.2,0.2);
 
     // TODO: Uncomment if using FTC dashboard
     // FtcDashboard dashboard;
@@ -595,8 +580,6 @@ public class Wpered extends LinearOpMode  {
             leftB = hardwareMap.get(DcMotorEx.class,"lr");
             rightF = hardwareMap.get(DcMotorEx.class,"rf");
             rightB = hardwareMap.get(DcMotorEx.class,"rr");
-            krut = hardwareMap.get(DcMotorEx.class,"kr");
-            vobla = hardwareMap.get(DcMotorEx.class,"vl");
             zaxvat = hardwareMap.crservo.get("zx");
             leftF.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
             rightF.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
@@ -614,6 +597,12 @@ public class Wpered extends LinearOpMode  {
             rightF.setPower(0);
             leftB.setPower(0);
             rightB.setPower(0);
+            waitForStart();
+            while (opModeIsActive()) {
+                turnPID(90, 180);
+                stop_all();
+                sleep(3000000);
+            }
 
 
             // TODO: МАТЬ АГАПА
@@ -622,7 +611,7 @@ public class Wpered extends LinearOpMode  {
         }
 
     // main pid turn with imu method
-   /* public void turnPID(double targetAngle, double firstAngle) {
+    public void turnPID(double targetAngle, double firstAngle) {
         double firstError = targetAngle - firstAngle;
         // first error used similarly to as placeholder
         double error = firstError;
@@ -630,9 +619,9 @@ public class Wpered extends LinearOpMode  {
         // error for use to stop while loop
         double imuError;
 
-        while (error < targetAngle ) {
+        while (error < targetAngle) {
             // DEV TODO: Look into Android Studio error for imu angular orientation LINES (125, 135 *subject to change*)
-            error = imu.getAngularOrientation(AxesReference.INTRINSIC, AxesOrder.ZYX, AngleUnit.DEGREES) + firstError;
+            //error = imu.getAngularOrientation(AxesReference.INTRINSIC, AxesOrder.XYZ, AngleUnit.DEGREES) + firstError;
             double changeInError = lastError - error;
             integral += changeInError * PIDTimer.time();
             double derivative = changeInError / PIDTimer.time();
@@ -640,14 +629,14 @@ public class Wpered extends LinearOpMode  {
             double I = testPID.i * integral;
             double D = testPID.d * derivative;
             leftF.setPower(P + I + D);
-            rightF.setPower(-P + -I + -D);
+            rightF.setPower(P + I + D);
             leftB.setPower(P + I + D);
-            rightB.setPower(-P + -I + -D);
+            rightB.setPower(P + I + D);
             error = lastError;
             PIDTimer.reset();
-            imuError = imu.getAngularOrientation(AxesReference.INTRINSIC, AxesOrder.ZYX, AngleUnit.DEGREES) + firstError;
+            //imuError = imu.getAngularOrientation(AxesReference.INTRINSIC, AxesOrder.XYZ, AngleUnit.DEGREES) + firstError;
         }
-    }*/
+    }
 }
 /*class Wpered {
 }*/
