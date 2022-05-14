@@ -53,6 +53,7 @@ public class Methods extends LinearOpMode {
     double tick;
     int kal;
     int x = 0;
+
     public void Pis_UP (double tick, int kal){
         while (x <= kal) {
             double pis2 = pis.getPower();
@@ -73,6 +74,7 @@ public class Methods extends LinearOpMode {
         pisun.setPower(0);
         sleep(100);
     }
+
     public void kub_verx () {
         pod.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         pod.setTargetPosition(2800); //2100 verx
@@ -85,8 +87,8 @@ public class Methods extends LinearOpMode {
         pod.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         pod.setPower(0);
         sleep(100);
-
     }
+
     public void kub_mid () {
         pod.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         pod.setTargetPosition(2350); //2100 verx
@@ -99,8 +101,8 @@ public class Methods extends LinearOpMode {
         pod.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         pod.setPower(0);
         sleep(100);
-
     }
+
     public void kub_niz (){
         pod.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         pod.setTargetPosition(1250); //2100 verx
@@ -125,7 +127,6 @@ public class Methods extends LinearOpMode {
         }
         pod.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         sleep(100);
-
         pod.setPower(0);
         sleep(1);
     }
@@ -139,6 +140,7 @@ public class Methods extends LinearOpMode {
         vikidisch.setPower(0.05);
         sleep(500);
     }
+
     public void vikidisch_mid(double napr){
         kub_mid();
         stop_all();
